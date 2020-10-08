@@ -1,0 +1,10 @@
+# task - custom the topology
+
+# mininet
+$ sudo mn --custom network_slice/experiment_3/task3_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
+
+# ryu
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
+
+# open Xterm for h1 h2 h3 h4 in mininet 
+$ xterm h1 h2 h3 h4

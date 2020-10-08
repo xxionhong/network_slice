@@ -1,0 +1,76 @@
+# task1 - show the topology
+
+# with controller code
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
+
+# without controller code
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py
+
+# mininet
+$ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
+
+# go Browser, 
+http://127.0.0.1:8080
+
+
+# task2 - custom topology in mininet
+
+# mininet
+$ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
+
+# ryu
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
+
+
+
+# task3 - mod flow
+
+# mininet
+$ sudo mn --topo single,4 --mac --switch ovs,protocols=OpenFlow13 --controller remote
+
+# ryu
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
+
+# in terminal
+$ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+
+# then mod the one flow that make h1 can't ping h4
+sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00.00.00.00.00.04, dl_dst=00.00.00.00.00.01, actions=drop"
+sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=drop"
+
+# then pingall in mininet
+# h1 -> h2 h3 x
+# h2 -> h1 h3 h4
+# h3 -> h1 h2 h4
+# h4 -> x h2 h3
+
+# task4 - meter table
+
+# mininet
+$ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
+# ryu
+$ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
+
+#in terminal, typing 
+$ sudo ovs-vsctl set bridge s1 datapath_type=netdev 
+$ sudo ovs-vsctl set bridge s2 datapath_type=netdev 
+
+# open Xterm for h1 h2 h3 h4 in mininet 
+$ xterm h1 h2 h3 h4
+
+# in all xterm, typing
+$ ifconfig
+$ ethtool -K h1-eth0 tx off
+$ ethtool -K h2-eth0 tx off
+$ ethtool -K h3-eth0 tx off
+$ ethtool -K h4-eth0 tx off
+
+# then in h4 
+$ iperf -s
+
+# in h1
+$ iperf -c 10.0.0.4
+# in h2
+$ iperf -c 10.0.0.4
+# in h3
+$ iperf -c 10.0.0.4

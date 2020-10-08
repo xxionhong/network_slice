@@ -56,7 +56,16 @@ $ ryu-manager --verbose ryu.app.ofctl_rest ryu.app.mysw_basic
 $ sudo mn --mac --switch ovsk,protocols=OpenFlow13 --controller remote
 
 
+# using postman
+# http://127.0.0.1:8080/stats/flow/1
+# get/json
+
+
 # and the next one in Ryu and Mininet 
 
 $ ryu-manager --verbose ryu.app.ofctl_rest ryu.app.mysw_flow
 $ sudo mn --mac --switch ovsk,protocols=OpenFlow13 --controller remote
+
+# using postman
+# http://127.0.0.1:8080/stats/flow/1
+# get/json
