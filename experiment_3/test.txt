@@ -1,0 +1,31 @@
+sudo ovs-vsctl show
+sudo ovs-ofctl show s1 -O openflow13
+
+sudo ovs-vsctl -- set port s1-eth2  qos=@newqos \
+-- --id=@newqos create qos type=linux-htb other-config:max-rate=200000000 queues=0=@q0 \
+-- --id=@q0 create queue other-config:min-rate=100000000 other-config:max-rate=200000000
+
+sudo ovs-vsctl list qos
+sudo ovs-vsctl list port
+
+sudo ovs-ofctl -O openflow13 dump-flows s1
+
+xxion@xxion-ubuntu:~$ sudo ovs-ofctl -O openflow13 dump-flows s1
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=1.545s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:01 actions=output:1
+ cookie=0x0, duration=1.540s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:02 actions=output:2
+ cookie=0x0, duration=1.528s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=3,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:01 actions=output:1
+ cookie=0x0, duration=1.524s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:03 actions=output:3
+ cookie=0x0, duration=1.507s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=4,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:01 actions=output:1
+ cookie=0x0, duration=1.505s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:04 actions=output:4
+ cookie=0x0, duration=1.496s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=3,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:02 actions=output:2
+ cookie=0x0, duration=1.495s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:03 actions=output:3
+ cookie=0x0, duration=1.489s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=4,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:02 actions=output:2
+ cookie=0x0, duration=1.487s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=2,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:04 actions=output:4
+ cookie=0x0, duration=1.480s, table=0, n_packets=3, n_bytes=238, priority=1,in_port=4,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:03 actions=output:3
+ cookie=0x0, duration=1.479s, table=0, n_packets=2, n_bytes=196, priority=1,in_port=3,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:04 actions=output:4
+ cookie=0x0, duration=3.873s, table=0, n_packets=51, n_bytes=4864, priority=0 actions=CONTROLLER:65535
+
+sudo ovs-ofctl -O openflow13 mod-flows s1 "table=0, n_packets=2, n_bytes=196, priority=1,in_port=1,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:04 actions=output:4,set_queue:0"
+
+

@@ -1,0 +1,15 @@
+sudo ovs-vsctl set port s1-eth1 qos=@newqos -- --id=@newqos create qos type=linux-htb other-config:max-rate=10000000 queues=0=@q0,1=@q1 -- --id=@q0 create queue other-config:min-rate=1000000 other-config:max-rate=2000000 -- --id=@q1 create queue other-config:min-rate=1000000 other-config:max-rate=8000000
+
+sudo ovs-vsctl -- set port s1-eth1  qos=@newqos \
+-- --id=@newqos create qos type=linux-htb other-config:max-rate=10000000 queues=0=@q0 \
+-- --id=@q0 create queue other-config:min-rate=10000000 other-config:max-rate=10000000
+
+
+sudo ovs-ofctl show s1 -O openflow13
+sudo ovs-vsctl list qos
+sudo ovs-vsctl list port
+
+sudo ovs-ofctl mod-flows br-int "table=25, n_packets=1051294240, n_bytes=707172859381, idle_age=20, hard_age=65534, priority=2,in_port=9,dl_src=fa:16:3e:e5:d9:00 actions=set_queue:0,NORMAL"
+
+
+sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue

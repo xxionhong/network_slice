@@ -1,0 +1,7 @@
+auth_url: 'http://{IP}:5000/v3'
+username: 'admin'
+password: '{pw}'
+project_name: 'admin'
+project_domain_name: 'Default'
+user_domain_name: 'Default'
+cert_verify: 'True'

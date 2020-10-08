@@ -1,0 +1,56 @@
+###total instrucation
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+
+# install git
+sudo apt-get install -y git
+
+# clone mininet and install
+cd ~
+git clone git://github.com/mininet/mininet
+sudo ./mininet/util/install.sh –a
+
+# test mininet
+sudo mn 
+# leave mininet
+exit
+
+# check the ovs version, it need to newer than 2.10, so we reinstall 2.10.5
+sudo ovs-vsctl -V
+
+# remove old-ovs
+sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki openvswitch-testcontroller -y
+
+# mod the install.sh script
+sed -i -e 's/for pkg in/$pkginst libopenvswitch_$OVS_RELEASE*.deb\n    for pkg in/g' ~/mininet/util/install.sh
+cd ~
+# install ovs 2.10.5
+sudo ./mininet/util/install.sh -n3V 2.10.5
+sudo /usr/share/openvswitch/scripts/ovs-ctl start
+
+# check the new ovs version
+sudo ovs-vsctl -V
+
+#before install ryu, prepare
+sudo apt-get install libxml2-dev libxslt1-dev python-pip python3-pip python-eventlet python-routes python-webob python-paramiko
+sudo pip3 install msgpack-python eventlet==0.15.2
+sudo pip3 install six --upgrade
+sudo pip3 install oslo.config q --upgrade
+
+#install ryu
+git clone https://github.com/faucetsdn/ryu.git
+cd ryu
+sudo pip3 install .
+cd ~
+
+# install chrome 
+cd Downloads/
+wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo apt-get install -f
+cd ..
+
+
+

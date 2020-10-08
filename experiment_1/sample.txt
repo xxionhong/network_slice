@@ -1,0 +1,37 @@
+{"dpid":1,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,  
+#"idle_timeout":30,  
+#"hard_timeout":200,  
+"priority":11111,  
+"flags":1,  
+"match":{"dl_dst":"00:00:00:00:00:02"},  
+"actions":[{  "type":"OUTPUT",  "port":2}]
+}
+
+{"dpid":1,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,  
+#"idle_timeout":30,  
+#"hard_timeout":200,  
+"priority":11111,  
+"flags":1,  
+"match":{"dl_dst":"00:00:00:00:00:01"},  
+"actions":[{  "type":"OUTPUT",  "port":1}]
+}
+
+
+
+{"dpid":1,  
+ "cookie":1,  
+ "cookie_mask":1,  
+ "table_id":0,  
+ #"idle_timeout":30,  
+ #"hard_timeout":200,  
+ "priority":11111,  
+ "flags":1,  
+ "match":{"dl_type":2054,"arp_tpa":"10.0.0.2"},  
+"actions":[{  "type":"OUTPUT",  "port":2}]
+}
