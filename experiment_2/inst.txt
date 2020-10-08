@@ -74,3 +74,23 @@ $ iperf -c 10.0.0.4
 $ iperf -c 10.0.0.4
 # in h3
 $ iperf -c 10.0.0.4
+
+# add meter
+$ sudo ovs-ofctl -O OpenFlow13 add-meter s1 meter=1,kbps,band=type=drop,rate=5000
+
+# show meters
+$ sudo ovs-ofctl -O OpenFlow13 dump-meters s1
+
+# show flows in terminal
+$ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+
+# mod flow into meter in terminal
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=meter:1,output:"s1-eth4""
+
+# in h1
+$ iperf -c 10.0.0.4
+
+# delete meter 
+$ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
+
+## https://www.sdnlab.com/24306.html
