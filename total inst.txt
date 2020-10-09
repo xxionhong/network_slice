@@ -7,31 +7,23 @@ sudo reboot
 # install git
 sudo apt-get install -y git
 
-# clone mininet and install
+# clone mininet
 cd ~
 git clone git://github.com/mininet/mininet
-sudo ./mininet/util/install.sh –a
+
+# mod the mininet's install.sh script
+sed -i -e 's/for pkg in/$pkginst libopenvswitch_$OVS_RELEASE*.deb\n    for pkg in/g' ~/mininet/util/install.sh
+
+# install mininet and ovs 2.10.5
+sudo ./mininet/util/install.sh -n3V 2.10.5
+
+# check the new ovs version
+sudo ovs-vsctl -V
 
 # test mininet
 sudo mn 
 # leave mininet
 exit
-
-# check the ovs version, it need to newer than 2.10, so we reinstall 2.10.5
-sudo ovs-vsctl -V
-
-# remove old-ovs
-sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki openvswitch-testcontroller -y
-
-# mod the install.sh script
-sed -i -e 's/for pkg in/$pkginst libopenvswitch_$OVS_RELEASE*.deb\n    for pkg in/g' ~/mininet/util/install.sh
-cd ~
-# install ovs 2.10.5
-sudo ./mininet/util/install.sh -n3V 2.10.5
-sudo /usr/share/openvswitch/scripts/ovs-ctl start
-
-# check the new ovs version
-sudo ovs-vsctl -V
 
 #before install ryu, prepare
 sudo apt-get install libxml2-dev libxslt1-dev libffi-dev libssl-dev zlib1g-dev python3-pip python-eventlet python-routes python-webob python-paramiko gcc python-dev 
@@ -54,3 +46,9 @@ cd ~
 
 
 
+# ########optional 
+sudo /usr/share/openvswitch/scripts/ovs-ctl start
+# check the ovs version, it need to newer than 2.10, so we reinstall 2.10.5
+sudo ovs-vsctl -V
+# remove old-ovs
+sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki openvswitch-testcontroller -y
