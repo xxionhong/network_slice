@@ -34,7 +34,7 @@ sudo /usr/share/openvswitch/scripts/ovs-ctl start
 sudo ovs-vsctl -V
 
 #before install ryu, prepare
-sudo apt-get install libxml2-dev libxslt1-dev python-pip python3-pip python-eventlet python-routes python-webob python-paramiko
+sudo apt-get install libxml2-dev libxslt1-dev libffi-dev libssl-dev zlib1g-dev python3-pip python-eventlet python-routes python-webob python-paramiko gcc python-dev 
 sudo pip3 install msgpack-python eventlet==0.15.2
 sudo pip3 install six --upgrade
 sudo pip3 install oslo.config q --upgrade
@@ -50,7 +50,7 @@ cd Downloads/
 wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt-get install -f
-cd ..
+cd ~
 
 
 
