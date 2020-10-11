@@ -35,8 +35,8 @@ $ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/sim
 $ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 
 # then mod the one flow that make h1 can't ping h4
-sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00.00.00.00.00.04, dl_dst=00.00.00.00.00.01, actions=drop"
-sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=drop"
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00.00.00.00.00.04, dl_dst=00.00.00.00.00.01, actions=drop"
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=drop"
 
 # then pingall in mininet
 # h1 -> h2 h3 x
@@ -51,7 +51,7 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 # ryu
 $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
 
-#in terminal, typing 
+# in terminal, typing 
 $ sudo ovs-vsctl set bridge s1 datapath_type=netdev 
 $ sudo ovs-vsctl set bridge s2 datapath_type=netdev 
 
