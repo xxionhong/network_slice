@@ -6,7 +6,7 @@ $ sudo ryu-manager --verbose ryu.app.ofctl_rest
 
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
-# Using restful way, use postman to add-flow for the switch
+# Using restful way, use postman to add-flow for the switch (https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
 # http://127.0.0.1:8080/stats/flowentry/add
 # POST/json
 
@@ -14,10 +14,8 @@ Flow1 (h1->h2)=
 {"dpid":1,  
 "cookie":1,  
 "cookie_mask":1,  
-"table_id":0,  
-#"idle_timeout":30,  
-#"hard_timeout":200,  
-"priority":11111,  
+"table_id":0,   
+"priority":1,  
 "flags":1,  
 "match":{"dl_dst":"00:00:00:00:00:02"},  
 "actions":[{  "type":"OUTPUT",  "port":2}]
@@ -27,10 +25,8 @@ Flow2 (h2->h1)=
 {"dpid":1,  
 "cookie":1,  
 "cookie_mask":1,  
-"table_id":0,  
-#"idle_timeout":30,  
-#"hard_timeout":200,  
-"priority":11111,  
+"table_id":0,   
+"priority":1,  
 "flags":1,  
 "match":{"dl_dst":"00:00:00:00:00:01"},  
 "actions":[{  "type":"OUTPUT",  "port":1}]
@@ -40,14 +36,12 @@ Flow3 (ARP)=
 {"dpid":1,  
  "cookie":1,  
  "cookie_mask":1,  
- "table_id":0,  
- #"idle_timeout":30,  
- #"hard_timeout":200,  
- "priority":11111,  
+ "table_id":0,   
+ "priority":1,  
  "flags":1,  
  "match":{"dl_type":2054,"arp_tpa":"10.0.0.2"},  
 "actions":[{  "type":"OUTPUT",  "port":2}]
-} 
+}
 
 
 # next one in Ryu and Mininet 
@@ -64,7 +58,7 @@ $ sudo mn --mac --switch ovsk,protocols=OpenFlow13 --controller remote
 # and the next one in Ryu and Mininet 
 
 $ ryu-manager --verbose ryu.app.ofctl_rest ryu.app.mysw_flow
-$ sudo mn --mac --switch ovsk,protocols=OpenFlow13 --controller remote
+$ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 # using postman
 # http://127.0.0.1:8080/stats/flow/1

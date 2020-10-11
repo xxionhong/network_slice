@@ -100,4 +100,69 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 # mininet
 $ sudo mn --custom network_slice/experiment_2/task3_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 # ryu
-$ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
+$ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
+
+# Using restful way, use postman to add-flow for the switch (https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
+
+# http://127.0.0.1:8080/stats/flowentry/add
+# POST/json
+Flow in s1 (h1 to h2 and h3)=
+{"dpid":1,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":1},  
+"actions":[{  "type":"OUTPUT",  "port":3}]
+}
+Flow in s1 (h2 and h3 and h1)=
+{"dpid":1,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":3},  
+"actions":[{  "type":"OUTPUT",  "port":1}]
+}
+Flow in s2 (h2 to h3 and h1)=
+{"dpid":2,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":1},  
+"actions":[{  "type":"OUTPUT",  "port":3}]
+}
+Flow in s2 (h1 and h3 to h2)=
+{"dpid":2,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":3},  
+"actions":[{  "type":"OUTPUT",  "port":1}]
+}
+Flow in s3 (h1 to h2)=
+{"dpid":3,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":2},  
+"actions":[{  "type":"OUTPUT",  "port":3}]
+}
+Flow in s3 (h2 to h1)=
+{"dpid":3,  
+"cookie":1,  
+"cookie_mask":1,  
+"table_id":0,   
+"priority":1,  
+"flags":1,  
+"match":{"in_port":3},  
+"actions":[{  "type":"OUTPUT",  "port":2}]
+}
