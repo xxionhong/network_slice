@@ -26,6 +26,8 @@ $ sudo ovs-vsctl list port s1-eth4
 $ sudo ovs-vsctl list qos {uuid}
 $ sudo ovs-vsctl list queue {uuid}
 
+$ sudo ovs-appctl qos/show s1-eth4
+
 $ sudo ovs-ofctl -O openflow13 dump-flows s1
 
 $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=set_queue:0,output:"s1-eth4""
@@ -35,3 +37,16 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 
 # kill all Qos and Queue
 $ sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue
+# kill single qos and queue
+$ sudo ovs-vsctl remove qos {uuid} queue {queue_num}
+$ sudo ovs-vsctl destroy queue {uuid}
+
+
+# Weighted Round Robin (example)
+$ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
+--id=@newqos create qos type=PRONTO_WEIGHTED_ROUND_ROBIN queues:0=@newqueue queues:3=@newqueue1 -- \
+--id=@newqueue create queue other-config=min-rate=200000000,weight=3  -- \
+--id=@newqueue1 create queue other-config=min-rate=200000000,weight=3  
+
+
+
