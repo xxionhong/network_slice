@@ -6,7 +6,12 @@
 * ###### ubuntu &nbsp;`16.04`
 * ###### mininet `2.3.0d6 (master)`
 * ###### ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`v4.34 (master)`
-***
+---
+- [x] **[Experiment 1](https://github.com/xxionhong/network_slice/blob/main/experiment_1/instruction.md)**
+- [x] **[Experiment 2](https://github.com/xxionhong/network_slice/blob/main/experiment_2/instruction.md)**
+- [x] **[Experiment 3](https://github.com/xxionhong/network_slice/blob/main/experiment_3/instruction.md)**
+- [ ] **[Experiment 4](https://github.com/xxionhong/network_slice/blob/main/experiment_4/instruction.md)**
+---
 ## Installation Guile
 ### Initialize ubuntu 
 
@@ -72,7 +77,7 @@ $ sudo apt-get install -f
 $ cd ~
 ```
 
-### Clone the Github page
+### Clone this Github page
 ```shell
 $ cd ~
 $ git clone https://github.com/xxionhong/network_slice.git
@@ -85,3 +90,4 @@ $ sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki open
 # if ovs doesn't work
 $ sudo /usr/share/openvswitch/scripts/ovs-ctl start
 ```
+
