@@ -1,4 +1,0 @@
-######### optional 
-$ sudo /usr/share/openvswitch/scripts/ovs-ctl start
-# remove old-ovs
-$ sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki openvswitch-testcontroller -y

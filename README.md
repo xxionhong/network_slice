@@ -77,3 +77,11 @@ $ cd ~
 $ cd ~
 $ git clone https://github.com/xxionhong/network_slice.git
 ```
+### Optional
+```shell
+# remove old-ovs
+$ sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki openvswitch-testcontroller -y
+
+# if ovs doesn't work
+$ sudo /usr/share/openvswitch/scripts/ovs-ctl start
+```
