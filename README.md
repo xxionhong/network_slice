@@ -3,12 +3,11 @@
 * _This note is for the [page](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A0%82%E6%95%99%E6%9D%90%E6%8A%95%E5%BD%B1%E7%89%87/)_
 ***
 ## Environment requirement
-* ubuntu &nbsp;`16.04`
-* mininet `2.3.0d6 (master)`
-* ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`v4.34 (master)`
+* ###### ubuntu &nbsp;`16.04`
+* ###### mininet `2.3.0d6 (master)`
+* ###### ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`v4.34 (master)`
 ***
 ## Installation Guile
-
 ### Initialize ubuntu 
 
 ```shell
@@ -71,4 +70,10 @@ $ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.
 $ sudo dpkg -i google-chrome-stable_current_amd64.deb
 $ sudo apt-get install -f
 $ cd ~
+```
+
+### Clone the Github page
+```shell
+$ cd ~
+$ git clone https://github.com/xxionhong/network_slice.git
 ```
