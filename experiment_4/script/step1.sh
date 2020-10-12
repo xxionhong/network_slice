@@ -15,9 +15,6 @@ echo "==========restart network=========="
 systemctl restart network
 
 echo "==========Update and Reboot=========="
-yum update –y
-
-sleep 5
+yum update
 reboot
-
 echo "==========end=========="
