@@ -1,31 +1,31 @@
 # Experiment 3
 ---
 
-```shell
+```bash
 # ryu
 $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
 ```
-```shell
+```bash
 # mininet
 $ sudo mn --custom network_slice/experiment_3/exp3_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 ### `In Mininet`
-```shell
+```bash
 # open Xterm for h1 h2 h3 h4 in mininet 
 $ xterm h1 h2 h3 h4
 ```
 ### `In Xterm h4`
-```shell
+```bash
 # in h4
 $ iperf -s
 ```
 ### `In Xterm h1 h2 h3`
-```shell
+```bash
 # in h1 h2 h3
 $ iperf -c 10.0.0.4
 ```
 ### `In Terminal`
-```shell
+```bash
 # set Qos for Port s1-eth4 with 3 queues (q0 q1 q2),Qos Type is linux-htb
 $ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
 --id=@newqos create QoS type=linux-htb queues:0=@q0 queues:1=@q1 queues:2=@q2 -- \
@@ -53,20 +53,20 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth3", dl_src=00.00.00.00.00.03, dl_dst=00.00.00.00.00.04, actions=set_queue:2,output:"s1-eth4""
 ```
 ### `In Xterm h1 h2 h3`
-```shell
+```bash
 # in h1 h2 h3 to check the different
 $ iperf -c 10.0.0.4
 ```
 
 ### `Optional, In Terminal`
-```shell
+```bash
 # kill all Qos and Queue
 $ sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue
 # kill single qos and queue
 $ sudo ovs-vsctl remove qos {uuid} queue {queue_num}
 $ sudo ovs-vsctl destroy queue {uuid}
 ```
-```shell
+```bash
 # Weighted Round Robin (example)
 $ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
 --id=@newqos create qos type=PRONTO_WEIGHTED_ROUND_ROBIN queues:0=@newqueue queues:3=@newqueue1 -- \

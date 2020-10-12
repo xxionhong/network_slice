@@ -1,19 +1,19 @@
 # Experiment 1
 ---
-## Task 1
-```shell
+- ## Task 1 - Learn to use ryu and mininet with restful api
+```bash
 # start the ryu-manager
 $ sudo ryu-manager --verbose ryu.app.ofctl_rest
 ```
-```shell
+```bash
 # start the mininet
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 #### Using restful way (Postman) to add-flow for the switch. 
-### [ofctl_rest page](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
-### `In Postman`
-#### `http://127.0.0.1:8080/stats/flowentry/add`
-#### `POST/json`
+-  ### [ofctl_rest Document](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
+> ### `In Postman`
+> #### `http://127.0.0.1:8080/stats/flowentry/add`
+> #### `POST/json`
 ```json
 # Flow1 (h1->h2)=
 {
@@ -55,7 +55,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
 ### `In Terminal`
-```shell
+```bash
 # show the flows in s1
 $ sudo ovs-ofctl -O openflow13 dump-flows s1
 
@@ -63,17 +63,17 @@ $ sudo ovs-ofctl -O openflow13 dump-flows s1
 $ sudo ovs-appctl bridge/dump-flows s1
 ```
 ### `In Mininet`
-```shell
+```bash
 # If the flow-entry set success, the pingall will fine.
 $ pingall
 ```
 ---
-## Task 2
-```shell
+- ## Task 2
+```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu.app.ofctl_rest ryu.app.mysw_basic
 ```
-```shell
+```bash
 # start the mininet
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
@@ -81,13 +81,13 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
 ---
-## Task 3
-```shell
+- ## Task 3
+```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu.app.ofctl_rest ryu.app.mysw_flow
 
 ```
-```shell
+```bash
 # start the mininet
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
