@@ -10,7 +10,7 @@
 - [x] **[Experiment 1](./experiment_1/instruction.md)**
 - [x] **[Experiment 2](./experiment_2/instruction.md)**
 - [x] **[Experiment 3](./experiment_3/instruction.md)**
-- [ ] **[Experiment 4](./experiment_4/instruction.md)**
+- [ ] **[Experiment 4](./experiment_4/script/instruction.md)**
 ---
 ## Installation Guile
 ### Initialize ubuntu 
