@@ -15,9 +15,33 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 ---
 - ## Task 2
+- - #### task2_topo.py
+```python
+from mininet.topo import Topo
+from mininet.link import TCLink
+class MyTopo(Topo):
+
+    def __init__(self):
+        Topo.__init__(self)
+
+        h1 = self.addHost("h1")
+        h2 = self.addHost("h2")
+        h3 = self.addHost("h3")
+        h4 = self.addHost("h4")
+        s1 = self.addSwitch("s1")
+        s2 = self.addSwitch("s2")
+
+        self.addLink(h1,s1)
+        self.addLink(h2,s1)
+        self.addLink(h3,s1)
+        self.addLink(s1,s2)
+        self.addLink(h4,s2)
+
+topos = {"mytopo":(lambda : MyTopo())}
+```
 ```bash
 # start the ryu-manager
-# with controller
+# with controller (simple_switch_13.py)
 $ cd ~
 $ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
 ```
@@ -55,13 +79,15 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 
 ---
 - ## Task 4-1
+
+
 ```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
 ```
 ```bash
 # mininet
-$ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
+$ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 ### `In Terminal`
 ```bash
@@ -122,6 +148,32 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 #### [Relevant information](https://www.sdnlab.com/24306.html)
 ---
 - ## ~~Task 4-2~~ 
+- - #### task4_topo.py
+```python
+from mininet.topo import Topo
+from mininet.link import TCLink
+class MyTopo(Topo):
+
+    def __init__(self):
+        Topo.__init__(self)
+
+        h1 = self.addHost("h1")
+        h2 = self.addHost("h2")
+        h3 = self.addHost("h3")
+
+        s1 = self.addSwitch("s1")
+        s2 = self.addSwitch("s2")
+        s3 = self.addSwitch("s3")
+
+        self.addLink(h1,s1,cls=TCLink,bw=100)
+        self.addLink(h2,s2,cls=TCLink,bw=100)
+        self.addLink(h3,s3,cls=TCLink,bw=100)
+        self.addLink(s1,s2,cls=TCLink,bw=10)
+        self.addLink(s1,s3,cls=TCLink,bw=100)
+        self.addLink(s2,s3,cls=TCLink,bw=100)
+        
+topos = {"mytopo":(lambda : MyTopo())}
+```
 ```bash
 # ryu
 $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py

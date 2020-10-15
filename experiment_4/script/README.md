@@ -1,3 +1,12 @@
+# OpenStack Tacker installation
+---
+## Environment requirement
+* ###### CentOS-7 &nbsp;`2003`
+* ###### OpenStack `train`
+* ###### Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
+* ###### Oracle VirtualBox
+* ###### Wired Network (Not Wireless)
+
 ```bash
 # Stop the Firewalld=========
 $ systemctl stop firewalld NetworkManager
@@ -17,6 +26,7 @@ $ reboot
 ```
 
 ```bash
+$ yum install -y git 
 $ git clone https://github.com/xxionhong/network_slice
 
 # check SELINUX
@@ -24,30 +34,32 @@ $ sestatus
 # should show: SELinux status:                 disabled
 
 # install centos-release-openstack-train
-$ yum install -y centos-release-openstack-train
+$ yum install centos-release-openstack-train
 
 # yum update
-$ yum update –y
+$ yum update
 
 # install openstack-packstack
-$ yum install -y openstack-packstack
+$ yum install openstack-packstack
 
 # Generate answer file
 $ packstack --gen-answer-file answer.txt
 
+# mod the answer.txt file
+# CONFIG_DEFAULT_PASSWORD={password}
+# CONFIG_NTP_SERVERS=clock.stdtime.gov.tw
+# CONFIG_KEYSTONE_ADMIN_PW={password}
+# CONFIG_HEAT_INSTALL=y
+# CONFIG_PROVISION_DEMO=n
+
+# Edit answer file
 $ sed -i -e 's/CONFIG_NTP_SERVERS=/CONFIG_NTP_SERVERS=clock.stdtime.gov.tw/g' answer.txt
 $ sed -i -e 's/CONFIG_HEAT_INSTALL=n/CONFIG_HEAT_INSTALL=y/g' answer.txt
 $ sed -i -e 's/CONFIG_PROVISION_DEMO=y/CONFIG_PROVISION_DEMO=n/g' answer.txt
-
-# Edit answer file
 $ vim answer.txt
-# ===========================
-# CONFIG_DEFAULT_PASSWORD={password}
-# CONFIG_KEYSTONE_ADMIN_PW={password}
-# ===========================
 
 # initial packstack
-$ packstack --answer-file ~/answer.txt
+$ packstack --answer-file answer.txt
 # it may take half hour...
 ```
 
@@ -104,14 +116,14 @@ $ openstack endpoint create --region RegionOne nfv-orchestration admin http://{i
 
 ```bash
 # install tackerclient
-$ yum install –y python2-tackerclient 
-$ yum install -y openstack-tacker 
+$ yum install python2-tackerclient 
+$ yum install openstack-tacker 
 ```
 
 ```bash
 # replace tacker.conf
 $ mv /etc/tacker/tacker.conf /etc/tacker/tacker.conf.bak
-$ cp script/tacker.conf /etc/tacker/
+$ cp network_slice/experiment_4/script/tacker.conf /etc/tacker/
 $ chmod 744 /etc/tacker/tacker.conf
 
 $ hostname -i
@@ -149,12 +161,13 @@ $ chown tacker:tacker /etc/tacker/* -R
 
 ```bash
 # replace config.yaml
-$ cp script/config.yaml /etc/tacker/
+$ cd ~
+$ cp network_slice/experiment_4/script/config.yaml /etc/tacker/
 $ chmod 744 /etc/tacker/config.yaml
 
 $ hostname -i
 
-# vim admin-openrc.sh
+# vim admin-openrc.sh 
 $ vim script/admin-openrc.sh
 $ source script/admin-openrc.sh
 
@@ -207,7 +220,7 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 ```bash
 # Create Vnfd
 # https://docs.openstack.org/tacker/latest/user/vnfm_usage_guide.html
-$ openstack vnf descriptor create --vnfd-file script/Vnfd.yaml vnfd
+$ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/Vnfd.yaml vnfd
 
 # Create VNF
 
