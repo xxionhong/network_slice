@@ -7,10 +7,10 @@
 * ###### mininet `2.3.0d6 (master)`
 * ###### ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`v4.34 (master)`
 ---
-- [x] **[Experiment 1](./experiment_1/instruction.md)**
-- [x] **[Experiment 2](./experiment_2/instruction.md)**
-- [x] **[Experiment 3](./experiment_3/instruction.md)**
-- [ ] **[Experiment 4](./experiment_4/script/instruction.md)**
+- [x] **[Experiment 1](./experiment_1/README.md)**
+- [x] **[Experiment 2](./experiment_2/README.md)**
+- [x] **[Experiment 3](./experiment_3/README.md)**
+- [ ] **[Experiment 4](./experiment_4/script/README.md)**
 ---
 ## Installation Guile
 ### Initialize ubuntu 
