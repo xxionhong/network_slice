@@ -57,6 +57,7 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 # in h1 h2 h3 to check the different
 $ iperf -c 10.0.0.4
 ```
+![xterm](https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/2020-10-15%20215853.jpg?raw=true)
 
 ### `Optional, In Terminal`
 ```bash
