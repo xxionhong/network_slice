@@ -128,11 +128,13 @@ $ ethtool -K h1-eth0 tx off
 $ iperf -c 10.0.0.4
 ```
 ### `In Xterm h2`
+
 ```bash
 $ ethtool -K h2-eth0 tx off
 $ iperf -c 10.0.0.4
 ```
 ### `In Xterm h3`
+
 ```bash
 $ ethtool -K h3-eth0 tx off
 $ iperf -c 10.0.0.4
@@ -141,6 +143,7 @@ $ iperf -c 10.0.0.4
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20214623.jpg?raw=true" width="700"/>
 </p>
+
 ### `In Terminal`
 ```bash
 # add meter
