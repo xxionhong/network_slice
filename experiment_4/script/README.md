@@ -79,10 +79,10 @@ $ packstack --answer-file answer.txt
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="900"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="900"/>
 </p>
 
 ---
@@ -132,7 +132,7 @@ $ systemctl restart network
 $ ovs-vsctl show
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="500"/>
 </p>
 
 ```bash
@@ -295,15 +295,21 @@ $ openstack router add subnet testRouter net0
 # ALL UDP Ingress/Egress"
 
 $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
-
-# upload Image!!!!!"
 ```
+
+- ### Add the ICMP, TCP ,UDP Ingress/Engress Security Group
+
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20154355.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20154355.jpg?raw=true" width="900"/>
 </p>
+
+- ### Upload the ubuntu Image
+
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="900"/>
 </p>
+
+---
 
 ```bash
 # Create Vnfd
@@ -313,16 +319,19 @@ $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/
 # Create VNF
 $ openstack vnf create --vnfd-name vnfd server
 ```
-<p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="700"/>
-</p>
-
-### Mount the float IP
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="900"/>
 </p>
-then we can `ssh ubuntu@{ip}` to login
+
+- ### Mount the float IP
+
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
+</p>
+
+- #### then you can access `ssh ubuntu@{ip}` to login vnf
+
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143638.jpg?raw=true" width="700"/>
 </p>
