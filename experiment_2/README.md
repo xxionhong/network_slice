@@ -12,7 +12,9 @@ $ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/sim
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 Go Browser, open http://127.0.0.1:8080, then we can see the Topology
-![Topology](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20211848.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20211848.jpg?raw=true" width="700"/>
+</p>
 
 ---
 - ## Task 2
@@ -52,7 +54,9 @@ $ cd ~
 $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 Go Browser, open http://127.0.0.1:8080, then we can see the Topology
-![Topology](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20212222.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20212222.jpg?raw=true" width="700"/>
+</p>
 
 ---
 - ## Task 3
@@ -64,7 +68,9 @@ $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
 # mininet
 $ sudo mn --topo single,4 --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
-![Terminal](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20212446.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20212446.jpg?raw=true" width="700"/>
+</p>
 
 ### `In Terminal`
 ```bash
@@ -75,14 +81,19 @@ $ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00.00.00.00.00.04, dl_dst=00.00.00.00.00.01, actions=drop"
 $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=drop"
 ```
-![mod_flows](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213440.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213440.jpg?raw=true" width="700"/>
+</p>
+
 >### `Then pingall in mininet, it will show`
 > `h1 -> h2 h3 x`
 > `h2 -> h1 h3 h4`
 > `h3 -> h1 h2 h4`
 > `h4 -> x  h2 h3`
 
-![Terminal_pingall](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213533.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213533.jpg?raw=true" width="500"/>
+</p>
 
 ---
 - ## Task 4-1
@@ -126,8 +137,10 @@ $ iperf -c 10.0.0.4
 $ ethtool -K h3-eth0 tx off
 $ iperf -c 10.0.0.4
 ```
-![xterm](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20214623.jpg?raw=true)
 
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20214623.jpg?raw=true" width="700"/>
+</p>
 ### `In Terminal`
 ```bash
 # add meter
@@ -148,13 +161,16 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 # check the different 
 $ iperf -c 10.0.0.4
 ```
-![xterm](https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20215010.jpg?raw=true)
+
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20215010.jpg?raw=true" width="700"/>
+</p>
 ### `Optional, In Terminal`
 ```bash
 # delete meter 
 $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 ```
-#### [Relevant information](https://www.sdnlab.com/24306.html)
+#### [Relate page](https://www.sdnlab.com/24306.html)
 ---
 - ## ~~Task 4-2~~ 
 - - #### task4_topo.py

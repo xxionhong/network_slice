@@ -57,7 +57,9 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 # in h1 h2 h3 to check the different
 $ iperf -c 10.0.0.4
 ```
-![xterm](https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/2020-10-15%20215853.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/2020-10-15%20215853.jpg?raw=true" width="700"/>
+</p>
 
 ### `Optional, In Terminal`
 ```bash
@@ -75,4 +77,4 @@ $ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
 --id=@newqueue1 create queue other-config=min-rate=200000000,weight=3  
 ```
 
-### [Relate page](https://www.sdnlab.com/23289.html)
+#### [Relate page](https://www.sdnlab.com/23289.html)

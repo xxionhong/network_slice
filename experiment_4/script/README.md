@@ -1,12 +1,25 @@
-# OpenStack Tacker installation
+- # OpenStack Tacker installation
 ---
 ## Environment requirement
 * ###### CentOS-7 &nbsp;`2003`
 * ###### OpenStack `train`
 * ###### Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
 * ###### Oracle VirtualBox
-* ###### Wired Network (Not Wireless)
+* ###### Wired Network (Do not use Wi-Fi)
+---
+- ## VirtualBox Network Setting
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154259.jpg?raw=true" width="500"/>
+</p>
 
+---
+- ## CentOS7 installation Network Setting
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154043.jpg?raw=true" width="500"/>
+</p>
+
+---
+- ## Disable firewall, SELINUX and update
 ```bash
 # Stop the Firewalld=========
 $ systemctl stop firewalld NetworkManager
@@ -24,7 +37,7 @@ $ systemctl restart network
 $ yum update
 $ reboot
 ```
-
+- ## Install openstack-train
 ```bash
 $ yum install -y git 
 $ git clone https://github.com/xxionhong/network_slice
@@ -62,7 +75,38 @@ $ vim answer.txt
 $ packstack --answer-file answer.txt
 # it may take half hour...
 ```
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
+</p>
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="700"/>
+</p>
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="700"/>
+</p>
 
+---
+- - ### ifcfg-br-ex
+```txt
+IPADDR={Host IP}
+GATEWAY={GW IP}
+ONBOOT=yes
+PREFIX=24
+DNS1=8.8.8.8
+DEVICE=br-ex
+DEVICETYPE=ovs
+TYPE=OVSBridge
+BOOTPROTO=static
+```
+- - ### ifcfg-enp0s3
+```txt
+DEVICE=enp0s3
+TYPE=OVSPort
+DEVICETYPE=ovs
+OVS_BRIDGE=br-ex
+ONBOOT=yes
+```
+- ## Modify the network-script
 ```bash
 # backup ifcfg-enp0s3
 $ mv /etc/sysconfig/network-scripts/ifcfg-enp0s3 /etc/sysconfig/network-scripts/ifcfg-enp0s3.bak
@@ -87,6 +131,9 @@ $ systemctl restart network
 # show ovs-vsctl
 $ ovs-vsctl show
 ```
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="700"/>
+</p>
 
 ```bash
 # create tacker DB
@@ -108,19 +155,52 @@ $ openstack service create --name tacker --description "Tacker Project" nfv-orch
 
 $ hostname -i
 
-# 
+# create openstack endpoint
 $ openstack endpoint create --region RegionOne nfv-orchestration public http://{ip}:9890/
 $ openstack endpoint create --region RegionOne nfv-orchestration internal http://{ip}:9890/
 $ openstack endpoint create --region RegionOne nfv-orchestration admin http://{ip}:9890/
 ```
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20142353.jpg?raw=true" width="700"/>
+</p>
 
+---
+- ## Install tacker
+- - ### tacker.conf
+```txt
+[default]
+auth_strategy = keystone
+policy_file = /etc/tacker/policy.json
+debug = True
+use_syslog = False
+bind_host = {IP}
+bind_port = 9890
+service_plugins = nfvo,vnfm
+state_path = /var/lib/tacker
+transport_url = rabbit://openstack:{PASSWORD}@{IP}
+[keystone_authtoken]
+www_authenticate_uri = http://{IP}:5000
+auth_url = http://{IP}:5000
+memcached_servers = {IP}:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = services
+username = tacker
+password = {PASSWORD}
+token_cache_time = 3600
+[database]
+connection = mysql+pymysql://tacker:{PASSWORD}@{IP}/tacker
+[nfvo_vim]
+vim_drivers = openstack
+[tacker]
+monitor_driver = ping,http_ping
+```
 ```bash
 # install tackerclient
 $ yum install python2-tackerclient 
 $ yum install openstack-tacker 
-```
 
-```bash
 # replace tacker.conf
 $ mv /etc/tacker/tacker.conf /etc/tacker/tacker.conf.bak
 $ cp network_slice/experiment_4/script/tacker.conf /etc/tacker/
@@ -158,7 +238,16 @@ $ systemctl enable openstack-tacker-server openstack-tacker-conductor
 $ mkdir -p /etc/tacker/vim/fernet_keys
 $ chown tacker:tacker /etc/tacker/* -R
 ```
-
+- - ### config.yaml
+```txt
+auth_url: 'http://{IP}:5000/v3'
+username: 'admin'
+password: '{pw}'
+project_name: 'admin'
+project_domain_name: 'Default'
+user_domain_name: 'Default'
+cert_verify: 'True'
+```
 ```bash
 # replace config.yaml
 $ cd ~
@@ -166,10 +255,6 @@ $ cp network_slice/experiment_4/script/config.yaml /etc/tacker/
 $ chmod 744 /etc/tacker/config.yaml
 
 $ hostname -i
-
-# vim admin-openrc.sh 
-$ vim script/admin-openrc.sh
-$ source script/admin-openrc.sh
 
 # vim config.yaml
 $ vim /etc/tacker/config.yaml
@@ -182,17 +267,14 @@ $ openstack vim register --config-file /etc/tacker/config.yaml --description 'my
 # use Tacker to create VNF
 $ source keystonerc_admin
 
-
 $ openstack network create --share --external \
 --provider-physical-network extnet \
 --provider-network-type flat public
-
 
 $ openstack subnet create --network public \
 --allocation-pool start=192.168.0.20,end=192.168.0.40 \
 --gateway 192.168.0.1 \
 --subnet-range 192.168.0.0/24 public
-
 ```
 
 ```bash
@@ -201,7 +283,6 @@ $ openstack network create net0
 $ openstack subnet create net0 --network net0 \
 --subnet-range 10.20.0.0/24 \
 --gateway 10.20.0.254
-
 
 # create Virtual Router
 $ openstack router create testRouter
@@ -217,12 +298,31 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 
 # upload Image!!!!!"
 ```
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20154355.jpg?raw=true" width="700"/>
+</p>
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="700"/>
+</p>
+
 ```bash
 # Create Vnfd
 # https://docs.openstack.org/tacker/latest/user/vnfm_usage_guide.html
 $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/Vnfd.yaml vnfd
 
 # Create VNF
-
 $ openstack vnf create --vnfd-name vnfd server
 ```
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="700"/>
+</p>
+
+### Mount the float IP
+
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="700"/>
+</p>
+then we can `ssh ubuntu@{ip}` to login
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143638.jpg?raw=true" width="700"/>
+</p>

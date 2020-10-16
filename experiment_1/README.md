@@ -27,7 +27,9 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     "actions":[{  "type":"OUTPUT",  "port":2}]
 }
 ```
-![Flow1 (h1->h2)](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true)\
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="500"/>
+</p>
 
 ---
 ```json
@@ -43,7 +45,10 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     "actions":[{  "type":"OUTPUT",  "port":1}]
 }
 ```
-![Flow2 (h2->h1)](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="500"/>
+</p>
+
 ```json
 # Flow3 (ARP)=
 {
@@ -57,7 +62,9 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     "actions":[{  "type":"OUTPUT",  "port":2}]
 }
 ```
-![Flow3 (ARP)](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="500"/>
+</p>
 
 ### `In Terminal`
 ```bash
@@ -67,14 +74,20 @@ $ sudo ovs-ofctl -O openflow13 dump-flows s1
 # show the hidden flows in s1
 $ sudo ovs-appctl bridge/dump-flows s1
 ```
-![dump-flows](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205903.jpg?raw=true)
-![bridge/dump-flows](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210007.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205903.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210007.jpg?raw=true" width="500"/>
+</p>
+
 ### `In Mininet`
 ```bash
 # If the flow-entry set success, the pingall will fine.
 $ pingall
 ```
-![pingall](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true" width="500"/>
+</p>
+
 ---
 - ## Task 2
 - - #### mysw_basic.py
@@ -129,7 +142,10 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ### `In Postman`
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
-![Postman](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true" width="500"/>
+</p>
+
 ---
 - ## Task 3
 - - #### mysw_flow.py
@@ -182,5 +198,8 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ### `In Postman`
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
-![Postman](https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true)
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true" width="500"/>
+</p>
+
 ---
