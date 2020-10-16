@@ -79,10 +79,10 @@ $ packstack --answer-file answer.txt
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="900"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="1000"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="900"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="1000"/>
 </p>
 
 ---
@@ -132,7 +132,7 @@ $ systemctl restart network
 $ ovs-vsctl show
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="350"/>
 </p>
 
 ```bash
