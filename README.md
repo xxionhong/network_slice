@@ -30,7 +30,7 @@ $ sudo reboot
 ```bash
 # clone mininet
 $ cd ~
-$ it clone git://github.com/mininet/mininet
+$ git clone git://github.com/mininet/mininet
 
 # modify the mininet's install.sh script
 $ sed -i -e 's/for pkg in/$pkginst libopenvswitch_$OVS_RELEASE*.deb\n    for pkg in/g' ~/mininet/util/install.sh
