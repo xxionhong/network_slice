@@ -1,6 +1,8 @@
+<font face= Cascadia-Mono>
+
 # Experiment 2
 ---
-- ## Task 1
+- ## Task 1 - Using Ryu Topology Viewer
 
 ```bash
 # start the ryu-manager
@@ -22,7 +24,7 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 ---
 
-- ## Task 2
+- ## Task 2 - With custom Topology 
 
 - - #### task2_topo.py
 
@@ -71,7 +73,7 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 ---
 
-- ## Task 3
+- ## Task 3-1
 
 ```bash
 # start the ryu-manager
@@ -94,8 +96,8 @@ $ sudo mn --topo single,4 --mac --switch ovs,protocols=OpenFlow13 --controller r
 $ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 
 # then mod the flows that make h1 and h4 can't ping each other
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00.00.00.00.00.04, dl_dst=00.00.00.00.00.01, actions=drop"
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=drop"
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth4", dl_src=00:00:00:00:00:04, dl_dst=00:00:00:00:00:01, actions=drop"
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00:00:00:00:00:01, dl_dst=00:00:00:00:00:04, actions=drop"
 ```
 
 <p align="center">
@@ -113,8 +115,57 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 </p>
 
 ---
+- ## Task 3-2
+- - #### task3_topo.py
 
-- ## Task 4-1
+```python
+from mininet.topo import Topo
+from mininet.link import TCLink
+class MyTopo(Topo):
+
+    def __init__(self):
+        Topo.__init__(self)
+
+        h1 = self.addHost("h1")
+        h2 = self.addHost("h2")
+        h3 = self.addHost("h3")
+        h4 = self.addHost("h4")
+        s1 = self.addSwitch("s1")
+        s2 = self.addSwitch("s2")
+        s3 = self.addSwitch("s3")
+        s4 = self.addSwitch("s4")
+
+        self.addLink(s1,h1)
+        self.addLink(s1,s2)
+        self.addLink(s2,s4)
+        self.addLink(s4,h3)
+
+        self.addLink(s1,h2)
+        self.addLink(s1,s3)
+        self.addLink(s4,s3)
+        self.addLink(s4,h4)
+        
+topos = {"mytopo":(lambda : MyTopo())}
+```
+
+```bash
+# ryu
+$ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
+```
+
+```bash
+# mininet
+$ sudo mn --custom network_slice/experiment_2/task3_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
+```
+
+>### `Then pingall in mininet, it will show`
+> `h1 -> x h3 x`
+> `h2 -> x x h4`
+> `h3 -> h1 x x`
+> `h4 -> x h2 x`
+
+---
+- ## Task 4-1 - Meter Table
 
 
 ```bash
@@ -211,7 +262,7 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 #### [Relate page](https://www.sdnlab.com/24306.html)
 ---
 
-- ## ~~Task 4-2~~ 
+- ## ~~Task 4-2~~
 
 - - #### task4_topo.py
 
@@ -251,7 +302,7 @@ $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
 $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
-#### Using restful way (Postman) to add-flow for the switch. 
+#### Using restful way (Postman) to add-flow. 
 
 ### [ofctl_rest page](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
 
@@ -262,7 +313,7 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
 #### `POST/json`
 
 ```json
-# Flow in s1 (h1 to h2 and h3)=
+# Flow in s1 (to h1)=
 {
     "dpid":1,  
     "cookie":1,  
@@ -270,13 +321,13 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
     "table_id":0,   
     "priority":1,  
     "flags":1,  
-    "match":{"in_port":1},  
-    "actions":[{  "type":"OUTPUT",  "port":3}]
+    "match":{"dl_dst":"00:00:00:00:00:01"},  
+    "actions":[{  "type":"OUTPUT",  "port":1}]
 }
 ```
 
 ```json
-#Flow in s1 (h2 and h3 and h1)=
+#Flow in s1 (to h2)=
 {
     "dpid":1,  
     "cookie":1,  
@@ -284,13 +335,13 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
     "table_id":0,   
     "priority":1,  
     "flags":1,  
-    "match":{"in_port":3},  
-    "actions":[{  "type":"OUTPUT",  "port":1}]
+    "match":{"dl_dst":"00:00:00:00:00:02"},  
+    "actions":[{  "type":"OUTPUT",  "port":3}]
 }
 ```
 
 ```json
-# Flow in s2 (h2 to h3 and h1)=
+# Flow in s2 (to h2)=
 {
     "dpid":2,  
     "cookie":1,  
@@ -298,13 +349,13 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
     "table_id":0,   
     "priority":1,  
     "flags":1,  
-    "match":{"in_port":1},  
-    "actions":[{  "type":"OUTPUT",  "port":3}]
+    "match":{"dl_dst":"00:00:00:00:00:02"},  
+    "actions":[{  "type":"OUTPUT",  "port":1}]
 }
 ```
 
 ```json
-# Flow in s2 (h1 and h3 to h2)=
+# Flow in s2 (to h1)=
 {
     "dpid":2,  
     "cookie":1,  
@@ -312,27 +363,13 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
     "table_id":0,   
     "priority":1,  
     "flags":1,  
-    "match":{"in_port":3},  
-    "actions":[{  "type":"OUTPUT",  "port":1}]
-}
-```
-
-```json
-# Flow in s3 (h1 to h2)=
-{
-    "dpid":3,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"in_port":2},  
+    "match":{"dl_dst":"00:00:00:00:00:01"},  
     "actions":[{  "type":"OUTPUT",  "port":3}]
 }
 ```
 
 ```json
-# Flow in s3 (h2 to h1)=
+# Flow in s3 (to h1)=
 {
     "dpid":3,  
     "cookie":1,  
@@ -340,7 +377,22 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
     "table_id":0,   
     "priority":1,  
     "flags":1,  
-    "match":{"in_port":3},  
+    "match":{"dl_dst":"00:00:00:00:00:01"},  
     "actions":[{  "type":"OUTPUT",  "port":2}]
 }
 ```
+
+```json
+# Flow in s3 (to h2)=
+{
+    "dpid":3,  
+    "cookie":1,  
+    "cookie_mask":1,  
+    "table_id":0,   
+    "priority":1,  
+    "flags":1,  
+    "match":{"dl_dst":"00:00:00:00:00:02"},  
+    "actions":[{  "type":"OUTPUT",  "port":3}]
+}
+```
+</font>
