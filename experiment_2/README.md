@@ -2,7 +2,7 @@
 
 # Experiment 2
 ---
-- ## Task 1 - Using Ryu Topology Viewer
+- ## Task 1 - Ryu Topology Viewer
 
 ```bash
 # start the ryu-manager
@@ -24,7 +24,7 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 ---
 
-- ## Task 2 - With custom Topology 
+- ## Task 2 - With Custom Topology 
 
 - - #### task2_topo.py
 
@@ -73,7 +73,7 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 ---
 
-- ## Task 3-1
+- ## Task 3-1 - Mod Flows
 
 ```bash
 # start the ryu-manager
@@ -115,7 +115,7 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 </p>
 
 ---
-- ## Task 3-2
+- ## Task 3-2 - Add Flows
 - - #### task3_topo.py
 
 ```python
@@ -164,6 +164,21 @@ $ sudo mn --custom network_slice/experiment_2/task3_topo.py --topo mytopo --mac 
 > `h3 -> h1 x x`
 > `h4 -> x h2 x`
 
+```bash
+# In Terminal
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=1,actions=output:2
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=2,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=3,actions=output:4
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=4,actions=output:3
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s2 in_port=1,actions=output:2
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s2 in_port=2,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=1,actions=output:2
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=2,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=1,actions=output:2
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=2,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=3,actions=output:4
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
+```
 ---
 - ## Task 4-1 - Meter Table
 
@@ -238,7 +253,7 @@ $ sudo ovs-ofctl -O OpenFlow13 dump-meters s1
 $ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 
 # mod flowentry into meter 
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=meter:1,output:"s1-eth4""
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00:00:00:00:00:01, dl_dst=00:00:00:00:00:04, actions=meter:1,output:"s1-eth4""
 ```
 
 ### `In Xterm h1`
@@ -262,7 +277,7 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 #### [Relate page](https://www.sdnlab.com/24306.html)
 ---
 
-- ## ~~Task 4-2~~
+- ## Task 4-2
 
 - - #### task4_topo.py
 
@@ -302,6 +317,16 @@ $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
 $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
+```bash
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=1,actions=output:3
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=3,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s2 in_port=1,actions=output:3
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s2 in_port=3,actions=output:1
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=3,actions=output:2
+$ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=2,actions=output:3
+
+```
+<!---
 #### Using restful way (Postman) to add-flow. 
 
 ### [ofctl_rest page](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
@@ -396,3 +421,5 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
 }
 ```
 </font>
+
+-->
