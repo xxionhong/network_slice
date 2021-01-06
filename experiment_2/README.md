@@ -26,7 +26,7 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
 - ## Task 2 - With Custom Topology 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task3.png?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%20task2.png?raw=true" width="700"/>
 </p>
 - - #### task2_topo.py
 
@@ -120,7 +120,7 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 - ## Task 3-2 - Add Flows
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task3.png?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%20task3.png?raw=true" width="500"/>
 </p>
 
 - - #### task3_topo.py
@@ -286,7 +286,7 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 - ## Task 4-2
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task4-2.png?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%20task4-2.png?raw=true" width="700"/>
 </p>
 
 - - #### task4_topo.py
