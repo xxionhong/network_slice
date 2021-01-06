@@ -25,7 +25,9 @@ Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 ---
 
 - ## Task 2 - With Custom Topology 
-
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task3.png?raw=true" width="700"/>
+</p>
 - - #### task2_topo.py
 
 ```python
@@ -116,8 +118,12 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 
 ---
 - ## Task 3-2 - Add Flows
-- - #### task3_topo.py
 
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task3.png?raw=true" width="500"/>
+</p>
+
+- - #### task3_topo.py
 ```python
 from mininet.topo import Topo
 from mininet.link import TCLink
@@ -279,6 +285,10 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 
 - ## Task 4-2
 
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-06%task4-2.png?raw=true" width="700"/>
+</p>
+
 - - #### task4_topo.py
 
 ```python
@@ -326,100 +336,3 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=3,actions=output:2
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=2,actions=output:3
 
 ```
-<!---
-#### Using restful way (Postman) to add-flow. 
-
-### [ofctl_rest page](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
-
-### `In Postman`
-
-#### `http://127.0.0.1:8080/stats/flowentry/add`
-
-#### `POST/json`
-
-```json
-# Flow in s1 (to h1)=
-{
-    "dpid":1,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:01"},  
-    "actions":[{  "type":"OUTPUT",  "port":1}]
-}
-```
-
-```json
-#Flow in s1 (to h2)=
-{
-    "dpid":1,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:02"},  
-    "actions":[{  "type":"OUTPUT",  "port":3}]
-}
-```
-
-```json
-# Flow in s2 (to h2)=
-{
-    "dpid":2,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:02"},  
-    "actions":[{  "type":"OUTPUT",  "port":1}]
-}
-```
-
-```json
-# Flow in s2 (to h1)=
-{
-    "dpid":2,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:01"},  
-    "actions":[{  "type":"OUTPUT",  "port":3}]
-}
-```
-
-```json
-# Flow in s3 (to h1)=
-{
-    "dpid":3,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:01"},  
-    "actions":[{  "type":"OUTPUT",  "port":2}]
-}
-```
-
-```json
-# Flow in s3 (to h2)=
-{
-    "dpid":3,  
-    "cookie":1,  
-    "cookie_mask":1,  
-    "table_id":0,   
-    "priority":1,  
-    "flags":1,  
-    "match":{"dl_dst":"00:00:00:00:00:02"},  
-    "actions":[{  "type":"OUTPUT",  "port":3}]
-}
-```
-</font>
-
--->

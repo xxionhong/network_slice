@@ -28,7 +28,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="400"/>
 </p>
 
 ---
@@ -46,7 +46,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="400"/>
 </p>
 
 ---
@@ -64,7 +64,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="400"/>
 </p>
 
 ---
@@ -87,7 +87,7 @@ $ sudo ovs-appctl bridge/dump-flows s1
 $ pingall
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true" width="400"/>
 </p>
 
 ---
@@ -145,7 +145,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true" width="400"/>
 </p>
 
 ---
@@ -201,12 +201,25 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true" width="400"/>
 </p>
 
 ---
 - ## Task 2 vs Task3
-ThroughPut Compare
+
+### `In Task 2 and Task 3 mininet`
+```bash
+$ xterm h1 h2
+```
+### `In h1 xterm`
+```bash
+$ iperf -s
+```
+### `In h2 xterm`
+```bash
+$ iperf -c 10.0.0.1 -i 2
+```
+ - Bandwidth Compare
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%add.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%20add.jpg?raw=true" width="600"/>
 </p>
