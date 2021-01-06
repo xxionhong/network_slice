@@ -1,5 +1,3 @@
-<font face= Cascadia-Mono>
-
 # Experiment 1
 ---
 - ## Task 1 - Learn to use ryu and mininet with restful api
@@ -207,4 +205,8 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 </p>
 
 ---
-</font>
+- ## Task 2 vs Task3
+ThroughPut Compare
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%add.jpg?raw=true" width="500"/>
+</p>
