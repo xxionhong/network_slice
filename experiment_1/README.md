@@ -219,7 +219,7 @@ $ iperf -s
 ```bash
 $ iperf -c 10.0.0.1 -i 2
 ```
- - Bandwidth Compare
+ - Bandwidth Comparison
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%20add.jpg?raw=true" width="600"/>
 </p>
