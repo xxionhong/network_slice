@@ -18,15 +18,12 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
-<p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20211848.jpg?raw=true" width="700"/>
-</p>
 
 ---
 
 - ## Task 2 - With Custom Topology 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="500"/>
 </p>
 
 - - #### task2_topo.py
@@ -70,10 +67,6 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 
 Go Browser, open http://127.0.0.1:8080, then we can see the Topology
 
-<p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20212222.jpg?raw=true" width="700"/>
-</p>
-
 ---
 
 - ## Task 3-1 - Modify Flows
@@ -114,14 +107,14 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 > `h4 -> x  h2 h3`
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213533.jpg?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2020-10-15%20213533.jpg?raw=true" width="400"/>
 </p>
 
 ---
 - ## Task 3-2 - Add Flows
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task3.png?raw=true" width="500"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task3.png?raw=true" width="600"/>
 </p>
 
 - - #### task3_topo.py
@@ -287,7 +280,7 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 - ## Task 4-2
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task4-2.png?raw=true" width="700"/>
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task4-2.png?raw=true" width="500"/>
 </p>
 
 - - #### task4_topo.py
@@ -328,6 +321,8 @@ $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
 $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
+### `In Terminal`
+
 ```bash
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=1,actions=output:3
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=3,actions=output:1
@@ -336,3 +331,27 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s2 in_port=3,actions=output:1
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=3,actions=output:2
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s3 in_port=2,actions=output:3
 ```
+### `In Mininet`
+
+```bash
+# open Xterm for h1 h2 in mininet 
+$ xterm h1 h2
+```
+
+### `Xterm h1`
+
+```bash
+# open iperf
+$ iperf -s
+```
+
+### `Xterm h2`
+
+```bash
+# open iperf
+$ iperf -c 10.0.0.1 -i 2
+```
+
+<p align="center">
+    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20221620.jpg?raw=true" width="700"/>
+</p>
