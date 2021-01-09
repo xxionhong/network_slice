@@ -1,4 +1,4 @@
-# Experiment 3
+# Experiment 3 - QoS
 ---
 
 ```bash
@@ -48,9 +48,9 @@ $ sudo ovs-vsctl list queue {uuid}
 $ sudo ovs-ofctl -O openflow13 dump-flows s1
 
 # mod the flows to different queue (q0 q1 q2)
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00.00.00.00.00.01, dl_dst=00.00.00.00.00.04, actions=set_queue:0,output:"s1-eth4""
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth2", dl_src=00.00.00.00.00.02, dl_dst=00.00.00.00.00.04, actions=set_queue:1,output:"s1-eth4""
-$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth3", dl_src=00.00.00.00.00.03, dl_dst=00.00.00.00.00.04, actions=set_queue:2,output:"s1-eth4""
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth1", dl_src=00:00:00:00:00:01, dl_dst=00:00:00:00:00:04, actions=set_queue:0,output:"s1-eth4""
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth2", dl_src=00:00:00:00:00:02, dl_dst=00:00:00:00:00:04, actions=set_queue:1,output:"s1-eth4""
+$ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth3", dl_src=00:00:00:00:00:03, dl_dst=00:00:00:00:00:04, actions=set_queue:2,output:"s1-eth4""
 ```
 ### `In Xterm h1 h2 h3`
 ```bash
