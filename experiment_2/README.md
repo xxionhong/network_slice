@@ -1,6 +1,6 @@
-<font face= Cascadia-Mono>
 
-# Experiment 2
+
+# Experiment 2 
 ---
 - ## Task 1 - Ryu Topology Viewer
 
@@ -16,7 +16,7 @@ $ ryu-manager --verbose ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/sim
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
-Go Browser, open http://127.0.0.1:8080, then we can see the Topology
+:pushpin: Open http://127.0.0.1:8080 in browser, then you can see the Topology
 
 
 ---
@@ -65,7 +65,7 @@ $ cd ~
 $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
-Go Browser, open http://127.0.0.1:8080, then we can see the Topology
+:pushpin: Open http://127.0.0.1:8080 in browser, then you can see the Topology
 
 ---
 
@@ -182,6 +182,7 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
 ---
 - ## Task 4-1 - Meter Table
 
+:pushpin: `Notice the OVS version and Linux kernel version` [:link:](https://docs.openvswitch.org/en/latest/faq/releases/?highlight=meter%20linux%20kernel)
 
 ```bash
 # start the ryu-manager
@@ -195,6 +196,7 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 
 ### `In Terminal`
 
+:pushpin: `To use ovs-vswitchd in userspace mode, set a bridge with datapath_type=netdev in the configuration database (default datapath_type=system)` [:link:](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/userspace.rst)
 ```bash
 $ sudo ovs-vsctl set bridge s1 datapath_type=netdev 
 $ sudo ovs-vsctl set bridge s2 datapath_type=netdev 
@@ -274,7 +276,7 @@ $ iperf -c 10.0.0.4
 $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 ```
 
-#### [Relate page](https://www.sdnlab.com/24306.html)
+#### [Relate page:link:](https://www.sdnlab.com/24306.html)
 ---
 
 - ## Task 4-2

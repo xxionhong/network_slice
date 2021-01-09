@@ -9,7 +9,7 @@ $ sudo ryu-manager --verbose ryu.app.ofctl_rest
 # start the mininet
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
-#### Using restful way (Postman) to add-flow for the switch. 
+#### :pushpin: Using restful way (Postman) to add-flow for the switch. 
 -  ### [ofctl_rest Document](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
 > ### `In Postman`
 > #### `http://127.0.0.1:8080/stats/flowentry/add`
