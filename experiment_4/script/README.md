@@ -1,7 +1,7 @@
 - # OpenStack Tacker installation
 ---
 ## Environment requirement
-* ###### CentOS-7 &nbsp;`2003`
+* ###### CentOS-7 &nbsp;`2009`
 * ###### OpenStack `train`
 * ###### Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
 * ###### Oracle VirtualBox
@@ -21,6 +21,8 @@
 ---
 - ## Disable firewall, SELINUX and update
 ```bash
+# login as root
+$ cd ~
 # Stop the Firewalld=========
 $ systemctl stop firewalld NetworkManager
 $ systemctl disable firewalld NetworkManager
@@ -34,12 +36,13 @@ $ sed -i -e 's/SELINUXTYPE=targeted/#SELINUXTYPE=targeted/g' /etc/selinux/config
 $ systemctl restart network
 
 # Update and Reboot
-$ yum update
+$ yum update -y
 $ reboot
 ```
 - ## Install openstack-train
 ```bash
 $ yum install -y git 
+$ cd ~
 $ git clone https://github.com/xxionhong/network_slice
 
 # check SELINUX
@@ -47,13 +50,13 @@ $ sestatus
 # should show: SELinux status:                 disabled
 
 # install centos-release-openstack-train
-$ yum install centos-release-openstack-train
+$ yum install centos-release-openstack-train -y
 
 # yum update
-$ yum update
+$ yum update -y
 
 # install openstack-packstack
-$ yum install openstack-packstack
+$ yum install openstack-packstack -y
 
 # Generate answer file
 $ packstack --gen-answer-file answer.txt
@@ -198,8 +201,8 @@ monitor_driver = ping,http_ping
 ```
 ```bash
 # install tackerclient
-$ yum install python2-tackerclient 
-$ yum install openstack-tacker 
+$ yum install python2-tackerclient -y
+$ yum install openstack-tacker -y
 
 # replace tacker.conf
 $ mv /etc/tacker/tacker.conf /etc/tacker/tacker.conf.bak
@@ -330,8 +333,8 @@ $ openstack vnf create --vnfd-name vnfd server
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
 </p>
 
-- #### then you can access `ssh ubuntu@{ip}` to login vnf
-
+- #### then you can access `ssh ubuntu@{float-ip}` to login vnf
+fd
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143638.jpg?raw=true" width="700"/>
 </p>
