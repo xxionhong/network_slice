@@ -100,7 +100,7 @@ $ sudo /usr/share/openvswitch/scripts/ovs-ctl start
 ---
 
 ## Resources
-- [:link: OpenFlow 1.3](https://opennetworking.org/wp-content/uploads/2014/10/openflow-spec-v1.3.0.pdf)
+- [:link: OpenFlow 1.3 Specification](https://opennetworking.org/wp-content/uploads/2014/10/openflow-spec-v1.3.0.pdf)
 - [:link: SDNLAB](https://www.sdnlab.com/)
 - [:link: Ryu Document](https://ryu.readthedocs.io/en/latest/index.html)
 - [:link: Mininet Document](https://github.com/mininet/mininet/wiki/Documentation)

@@ -82,29 +82,33 @@ $ sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue
 $ sudo ovs-vsctl remove qos {uuid} queue {queue_num}
 $ sudo ovs-vsctl destroy queue {uuid}
 ```
+:pushpin: OVS does not Support
 
 ```bash
 # Round Robin (example)
-$ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
---id=@newqos create qos type=PRONTO_ROUND_ROBIN queues:2=@newqueue queues:3=@newqueue1 -- \
---id=@newqueue create queue other-config:min-rate=100000000 other-config:max-rate=200000000 -- \
---id=@newqueue1 create queue other-config:min-rate=150000000 other-config:max-rate=400000000
+$ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
+--id=@newqos create QoS type=PRONTO_ROUND_ROBIN queues:0=@q0 queues:1=@q1 queues:2=@q2 -- \
+--id=@q0 create Queue other-config:min-rate=100000000 other-config:max-rate=200000000 -- \
+--id=@q1 create Queue other-config:min-rate=200000000 other-config:max-rate=400000000 -- \
+--id=@q2 create Queue other-config:min-rate=400000000 other-config:max-rate=600000000
 ```
 
 ```bash
 # Weighted Round Robin (example)
-$ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
---id=@newqos create qos type=PRONTO_WEIGHTED_ROUND_ROBIN queues:0=@newqueue queues:1=@newqueue1 -- \
---id=@newqueue create queue other-config=max-rate=200000000,weight=5  -- \
---id=@newqueue1 create queue other-config=max-rate=100000000,weight=3  
+$ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
+--id=@newqos create QoS type=PRONTO_WEIGHTED_ROUND_ROBIN queues:0=@q0 queues:1=@q1 queues:2=@q2 -- \
+--id=@q0 create Queue other-config=max-rate=300000000,weight=5 -- \
+--id=@q1 create Queue other-config=max-rate=200000000,weight=3 -- \
+--id=@q2 create Queue other-config=max-rate=100000000,weight=1
 ```
 
 ```bash
 # Weighted Fair Queuing (example)
-$ sudo ovs-vsctl -- set port s1-eth4 qos=@newqos -- \
---id=@newqos create qos type=PRONTO_WEIGHTED_FAIR_QUEUING queues:1=@newqueue queues:7=@newqueue1 -- \
---id=@newqueue create queue other-config=max-rate=300000000,weight=5  -- \
---id=@newqueue1 create queue other-config=max-rate=100000000,weight=5
+$ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
+--id=@newqos create QoS type=PRONTO_WEIGHTED_FAIR_QUEUING queues:0=@q0 queues:1=@q1 queues:2=@q2 -- \
+--id=@q0 create Queue other-config=max-rate=300000000,weight=5 -- \
+--id=@q1 create Queue other-config=max-rate=200000000,weight=3 -- \
+--id=@q2 create Queue other-config=max-rate=100000000,weight=1
 ```
 
 - **[PICA8 Configuring QoS scheduler :link:](https://docs.pica8.com/display/PicOS211sp/Configuring+QoS+scheduler)**

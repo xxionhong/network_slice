@@ -23,7 +23,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 :pushpin: Open http://127.0.0.1:8080 in browser, then you can see the Topology
 
-|Topo_style|Description|How|
+|Topo_style|Description|Sample|
 |---|----|--|
 |<center>minimal</center>|<center>Minimal topology with two hosts and one switch</center>|```sudo mn```|
 |<center>linear</center>|<center>Linear topology of k switches, with one host per switch.</center>|```sudo mn --topo linear,k```|
@@ -96,6 +96,8 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-13%20task3-1.png?raw=true" width="500"/>
 </p>
+
+### `In Terminal`
 
 ```bash
 # start the ryu-manager
