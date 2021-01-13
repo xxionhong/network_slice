@@ -1,4 +1,10 @@
+<center>
+
+# Experiment 4
+
 - # OpenStack Tacker installation
+</center>
+
 ---
 ## Environment requirement
 * ###### CentOS-7 &nbsp;`2009`
@@ -89,7 +95,7 @@ $ packstack --answer-file answer.txt
 </p>
 
 ---
-- - ### ifcfg-br-ex
+:white_medium_small_square: **ifcfg-br-ex**
 ```txt
 IPADDR={Host IP}
 GATEWAY={GW IP}
@@ -101,7 +107,7 @@ DEVICETYPE=ovs
 TYPE=OVSBridge
 BOOTPROTO=static
 ```
-- - ### ifcfg-enp0s3
+:white_medium_small_square: **ifcfg-enp0s3**
 ```txt
 DEVICE=enp0s3
 TYPE=OVSPort
@@ -169,7 +175,7 @@ $ openstack endpoint create --region RegionOne nfv-orchestration admin http://{i
 
 ---
 - ## Install tacker
-- - ### tacker.conf
+:white_medium_small_square: **tacker.conf**
 ```txt
 [default]
 auth_strategy = keystone
@@ -241,7 +247,7 @@ $ systemctl enable openstack-tacker-server openstack-tacker-conductor
 $ mkdir -p /etc/tacker/vim/fernet_keys
 $ chown tacker:tacker /etc/tacker/* -R
 ```
-- - ### config.yaml
+:white_medium_small_square: **config.yaml**
 ```txt
 auth_url: 'http://{IP}:5000/v3'
 username: 'admin'

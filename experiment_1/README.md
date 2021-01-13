@@ -1,6 +1,16 @@
+<center>
+
 # Experiment 1
+</center>
+
 ---
-- ## Task 1 - Learn to use ryu and mininet with restful api
+<center>
+
+## :point_right: Task 1 - Learn to use ryu and mininet with restful api 
+
+</center>
+### `In Terminal`
+
 ```bash
 # start the ryu-manager
 $ sudo ryu-manager --verbose ryu.app.ofctl_rest
@@ -10,10 +20,10 @@ $ sudo ryu-manager --verbose ryu.app.ofctl_rest
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 #### :pushpin: Using restful way (Postman) to add-flow for the switch. 
--  ### [ofctl_rest Document](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
-> ### `In Postman`
-> #### `http://127.0.0.1:8080/stats/flowentry/add`
-> #### `POST/json`
+##### [:link: ofctl_rest Document ](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
+### `In Postman`
+#### `http://127.0.0.1:8080/stats/flowentry/add`
+#### `POST/json`
 ```json
 # Flow1 (h1->h2)=
 {
@@ -31,7 +41,6 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="400"/>
 </p>
 
----
 ```json
 # Flow2 (h2->h1)=
 {
@@ -49,7 +58,6 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="400"/>
 </p>
 
----
 ```json
 # Flow3 (ARP)=
 {
@@ -67,7 +75,6 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="400"/>
 </p>
 
----
 ### `In Terminal`
 ```bash
 # show the flows in s1
@@ -91,8 +98,13 @@ $ pingall
 </p>
 
 ---
-- ## Task 2
-- - #### mysw_basic.py
+<center>
+
+## 	:point_right:Task 2 - Try a Ryu controller - FLOOD
+
+</center>
+
+:white_medium_small_square: **mysw_basic.py**
 ```python
 from ryu.base import app_manager
 from ryu.controller import ofp_event
@@ -149,8 +161,13 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 </p>
 
 ---
-- ## Task 3
-- - #### mysw_flow.py
+<center>
+
+## 	:point_right:Task 3 - Try a Ryu controller - Add FLOOD flow
+
+</center>
+
+:white_medium_small_square: **mysw_flow.py**
 ```python
 from ryu.base import app_manager
 from ryu.controller import ofp_event

@@ -1,8 +1,12 @@
-
+<center>
 
 # Experiment 2 
+
 ---
-- ## Task 1 - Ryu Topology Viewer
+
+## :point_right: Task 1 - Ryu Topology Viewer
+
+</center>
 
 ```bash
 # start the ryu-manager
@@ -21,12 +25,17 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 ---
 
-- ## Task 2 - With Custom Topology 
+<center>
+
+## :point_right: Task 2 - With Custom Topology
+
+</center>
+
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="500"/>
 </p>
 
-- - #### task2_topo.py
+:white_medium_small_square: **task2_topo.py**
 
 ```python
 from mininet.topo import Topo
@@ -69,7 +78,11 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 
 ---
 
-- ## Task 3-1 - Modify Flows
+<center>
+
+## :point_right: Task 3-1 - Modify Flows
+
+</center>
 
 ```bash
 # start the ryu-manager
@@ -111,13 +124,17 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 </p>
 
 ---
-- ## Task 3-2 - Add Flows
+<center>
+
+## :point_right: Task 3-2 - Add Flows
+
+</center>
 
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task3.png?raw=true" width="600"/>
 </p>
 
-- - #### task3_topo.py
+:white_medium_small_square: **task3_topo.py**
 ```python
 from mininet.topo import Topo
 from mininet.link import TCLink
@@ -180,9 +197,13 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=3,actions=output:4
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
 ```
 ---
-- ## Task 4-1 - Meter Table
+<center>
 
-:pushpin: `Notice the OVS version and Linux kernel version` [:link:](https://docs.openvswitch.org/en/latest/faq/releases/?highlight=meter%20linux%20kernel)
+## :point_right: Task 4-1 - Meter Table
+
+</center>
+
+[:pushpin: :link: Notice the OVS version and Linux kernel version](https://docs.openvswitch.org/en/latest/faq/releases/?highlight=meter%20linux%20kernel)
 
 ```bash
 # start the ryu-manager
@@ -196,7 +217,7 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 
 ### `In Terminal`
 
-:pushpin: `To use ovs-vswitchd in userspace mode, set a bridge with datapath_type=netdev in the configuration database (default datapath_type=system)` [:link:](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/userspace.rst)
+[:pushpin: :link: To use ovs-vswitchd in userspace mode, set a bridge with ```datapath_type=netdev``` in the configuration database (default ```datapath_type=system```) ](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/userspace.rst)
 ```bash
 $ sudo ovs-vsctl set bridge s1 datapath_type=netdev 
 $ sudo ovs-vsctl set bridge s2 datapath_type=netdev 
@@ -276,16 +297,21 @@ $ iperf -c 10.0.0.4
 $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 ```
 
-#### [Relate page:link:](https://www.sdnlab.com/24306.html)
+[:link:Relate page](https://www.sdnlab.com/24306.html)
+
 ---
 
-- ## Task 4-2
+<center>
+
+## :point_right: Task 4-2
+
+</center>
 
 <p align="center">
     <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task4-2.png?raw=true" width="500"/>
 </p>
 
-- - #### task4_topo.py
+:white_medium_small_square: **task4_topo.py**
 
 ```python
 from mininet.topo import Topo
