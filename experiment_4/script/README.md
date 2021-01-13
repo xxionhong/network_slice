@@ -2,26 +2,26 @@
 
 # Experiment 4
 
-- # OpenStack Tacker installation
+## :point_right: OpenStack Tacker installation
 </center>
 
 ---
-## Environment requirement
-* ###### CentOS-7 &nbsp;`2009`
-* ###### OpenStack `train`
-* ###### Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
-* ###### Oracle VirtualBox
-* ###### Wired Network (Do not use Wi-Fi)
+- ## Environment requirement
+*  CentOS-7 &nbsp;`2009`
+*  OpenStack `train`
+*  Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
+*  Oracle VirtualBox
+*  Wired Network (Do not use Wi-Fi)
 ---
 - ## VirtualBox Network Setting
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154259.jpg?raw=true" width="500"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154259.jpg?raw=true" width="500"/>
 </p>
 
 ---
 - ## CentOS7 installation Network Setting
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154043.jpg?raw=true" width="500"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154043.jpg?raw=true" width="500"/>
 </p>
 
 ---
@@ -45,7 +45,7 @@ $ systemctl restart network
 $ yum update -y
 $ reboot
 ```
-- ## Install openstack-train
+- ## Install Openstack-train
 ```bash
 $ yum install -y git 
 $ cd ~
@@ -85,18 +85,18 @@ $ packstack --answer-file answer.txt
 # it may take half hour...
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="1000"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="1000"/>
 </p>
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="1000"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="1000"/>
 </p>
 
 ---
 :white_medium_small_square: **ifcfg-br-ex**
-```txt
+```js
 IPADDR={Host IP}
 GATEWAY={GW IP}
 ONBOOT=yes
@@ -108,14 +108,14 @@ TYPE=OVSBridge
 BOOTPROTO=static
 ```
 :white_medium_small_square: **ifcfg-enp0s3**
-```txt
+```js
 DEVICE=enp0s3
 TYPE=OVSPort
 DEVICETYPE=ovs
 OVS_BRIDGE=br-ex
 ONBOOT=yes
 ```
-- ## Modify the network-script
+- ## Modify the Linux network-script
 ```bash
 # backup ifcfg-enp0s3
 $ mv /etc/sysconfig/network-scripts/ifcfg-enp0s3 /etc/sysconfig/network-scripts/ifcfg-enp0s3.bak
@@ -141,7 +141,7 @@ $ systemctl restart network
 $ ovs-vsctl show
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="350"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="350"/>
 </p>
 
 ```bash
@@ -153,7 +153,7 @@ $ grant all privileges on tacker.* to 'tacker'@'127.0.0.1' identified by '{pwd}'
 $ flush privileges;
 $ exit
 
-# Create Openstack User"
+# Create Openstack User : admin
 $ cd ~
 $ source ~/keystonerc_admin
 $ openstack user create --domain default --password {pwd} tacker
@@ -170,13 +170,13 @@ $ openstack endpoint create --region RegionOne nfv-orchestration internal http:/
 $ openstack endpoint create --region RegionOne nfv-orchestration admin http://{ip}:9890/
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20142353.jpg?raw=true" width="700"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20142353.jpg?raw=true" width="700"/>
 </p>
 
 ---
 - ## Install tacker
 :white_medium_small_square: **tacker.conf**
-```txt
+```js
 [default]
 auth_strategy = keystone
 policy_file = /etc/tacker/policy.json
@@ -247,8 +247,11 @@ $ systemctl enable openstack-tacker-server openstack-tacker-conductor
 $ mkdir -p /etc/tacker/vim/fernet_keys
 $ chown tacker:tacker /etc/tacker/* -R
 ```
+---
+- ## Tacker Configuration 
+
 :white_medium_small_square: **config.yaml**
-```txt
+```js
 auth_url: 'http://{IP}:5000/v3'
 username: 'admin'
 password: '{pw}'
@@ -271,9 +274,10 @@ $ vim /etc/tacker/config.yaml
 # create vim in openstack
 $ openstack vim register --config-file /etc/tacker/config.yaml --description 'my first vim' --is-default Hello-VIM
 ```
-
+---
+- ### Use Tacker to create VNF
 ```bash
-# use Tacker to create VNF
+
 $ source keystonerc_admin
 
 $ openstack network create --share --external \
@@ -309,20 +313,72 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 - ### Add the ICMP, TCP ,UDP Ingress/Engress Security Group
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20154355.jpg?raw=true" width="900"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20154355.jpg?raw=true" width="900"/>
 </p>
 
-- ### Upload the ubuntu Image
+- ### Upload the ubuntu server Image on openstack dashboard
+[:link: Download ubuntu bionic server image](https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img)
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="900"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="900"/>
 </p>
 
 ---
 
+:white_medium_small_square: **Vndf.yaml**
+
+[:link: VNF Descriptor Template Guide](https://docs.openstack.org/tacker/latest/contributor/vnfd_template_description.html)
+
+```js
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
+description: Demo example
+metadata:
+  template_name: sample-tosca-vnfd1
+topology_template:
+  node_templates:
+    VDU1:
+      type: tosca.nodes.nfv.VDU.Tacker
+      capabilities:
+        nfv_compute:
+          properties:
+            num_cpus: 1
+            mem_size: 512 MB
+            disk_size: 4 GB
+      properties:
+        image: ubuntu
+        availability_zone: nova
+        mgmt_driver: noop
+        key_name: Demo
+        config: |
+          param0: key1
+          param1: key2
+        user_data_format: RAW
+        user_data: |
+          #!/bin/sh
+          sudo apt update
+          sudo apt install iperf3 -y
+          iperf3 -s
+    CP1:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        management: true
+        order: 0
+        anti_spoofing_protection: false
+      requirements:
+        - virtualLink:
+            node: VL1
+        - virtualBinding:
+            node: VDU1
+    VL1:
+      type: tosca.nodes.nfv.VL
+      properties:
+        network_name: net0
+        vendor: Tacker
+
+```
+- [:link: VNF Manager User Guide](https://docs.openstack.org/tacker/latest/user/vnfm_usage_guide.html)
 ```bash
 # Create Vnfd
-# https://docs.openstack.org/tacker/latest/user/vnfm_usage_guide.html
 $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/Vnfd.yaml vnfd
 
 # Create VNF
@@ -330,17 +386,17 @@ $ openstack vnf create --vnfd-name vnfd server
 ```
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="900"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="900"/>
 </p>
 
 - ### Mount the float IP
 
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
 </p>
 
-- #### then you can access `ssh ubuntu@{float-ip}` to login vnf
-fd
+**Then you can access `ssh ubuntu@{float-ip}` to login vnf**
+
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143638.jpg?raw=true" width="700"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143638.jpg?raw=true" width="700"/>
 </p>

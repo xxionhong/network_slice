@@ -9,6 +9,7 @@
 ## :point_right: Task 1 - Learn to use ryu and mininet with restful api 
 
 </center>
+
 ### `In Terminal`
 
 ```bash
@@ -19,7 +20,7 @@ $ sudo ryu-manager --verbose ryu.app.ofctl_rest
 # start the mininet
 $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
-#### :pushpin: Using restful way (Postman) to add-flow for the switch. 
+#### :pushpin: Use restful way (Postman) to add-flow for the switch. 
 ##### [:link: ofctl_rest Document ](https://ryu.readthedocs.io/en/latest/app/ofctl_rest.html)
 ### `In Postman`
 #### `http://127.0.0.1:8080/stats/flowentry/add`
@@ -38,7 +39,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205313.jpg?raw=true" width="400"/>
 </p>
 
 ```json
@@ -55,7 +56,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205410.jpg?raw=true" width="400"/>
 </p>
 
 ```json
@@ -72,37 +73,42 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 }
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205459.jpg?raw=true" width="400"/>
 </p>
+
+[:pushpin::link: EtherType](https://en.wikipedia.org/wiki/EtherType)
 
 ### `In Terminal`
 ```bash
-# show the flows in s1
+# show the flowentrys in s1
 $ sudo ovs-ofctl -O openflow13 dump-flows s1
 
-# show the hidden flows in s1
+# show the hidden flowentrys in s1
 $ sudo ovs-appctl bridge/dump-flows s1
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205903.jpg?raw=true" width="500"/>
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210007.jpg?raw=true" width="500"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20205903.jpg?raw=true" width="500"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210007.jpg?raw=true" width="500"/>
 </p>
 
 ### `In Mininet`
 ```bash
-# If the flow-entry set success, the pingall will fine.
+# If the flow-entrys set successfully, the pingall will fine.
 $ pingall
 ```
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20210105.jpg?raw=true" width="400"/>
 </p>
 
 ---
 <center>
 
-## 	:point_right:Task 2 - Try a Ryu controller - FLOOD
+## 	:point_right:Task 2 - Try to write a Ryu controller - FLOOD
 
 </center>
+
+#### :pushpin: Use the FLOOD way to transmit packets in Ryu Controller. 
+ **```FLOOD : every incoming packet is sent through every outgoing link except the one it arrived on```**
 
 :white_medium_small_square: **mysw_basic.py**
 ```python
@@ -157,15 +163,17 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211058.jpg?raw=true" width="400"/>
 </p>
 
 ---
 <center>
 
-## 	:point_right:Task 3 - Try a Ryu controller - Add FLOOD flow
+## 	:point_right:Task 3 - Try to write a Ryu controller - Add FLOOD flow
 
 </center>
+
+#### :pushpin: Add a FLOOD flowentry to transmit packets. 
 
 :white_medium_small_square: **mysw_flow.py**
 ```python
@@ -206,6 +214,8 @@ class L2Switch(app_manager.RyuApp):
         mod = parser.OFPFlowMod(datapath=dp,priority=2048,match=match,instructions=inst)
         dp.send_msg(mod)
 ```
+### `In Mininet`
+
 ```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu.app.ofctl_rest network_slice/experiment_1/mysw_flow.py
@@ -218,25 +228,30 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 #### `http://127.0.0.1:8080/stats/flow/1`
 #### `GET/json`
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true" width="400"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2020-10-15%20211235.jpg?raw=true" width="400"/>
 </p>
 
 ---
 - ## Task 2 vs Task3
 
 ### `In Task 2 and Task 3 mininet`
+
 ```bash
+# Open xterm for h1 and h2 individually
 $ xterm h1 h2
 ```
 ### `In h1 xterm`
 ```bash
+# iperf server
 $ iperf -s
 ```
 ### `In h2 xterm`
 ```bash
+# iperf connect to 10.0.0.1, interval 2s
 $ iperf -c 10.0.0.1 -i 2
 ```
- - Bandwidth Comparison
+ - **Bandwidth Comparison**
+
 <p align="center">
-    <img src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%20add.jpg?raw=true" width="600"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_1/img/2021-01-06%20add.jpg?raw=true" width="600"/>
 </p>
