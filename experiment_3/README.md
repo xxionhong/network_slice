@@ -82,7 +82,7 @@ $ sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue
 $ sudo ovs-vsctl remove qos {uuid} queue {queue_num}
 $ sudo ovs-vsctl destroy queue {uuid}
 ```
-:pushpin: OVS does not Support
+:pushpin: OVS does not Support yet
 
 ```bash
 # Round Robin (example)

@@ -94,6 +94,16 @@ $ packstack --answer-file answer.txt
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="1000"/>
 </p>
 
+```bash
+# Install openstack service manager 
+$ yum install openstack-utils -y
+
+# check the services status
+$ openstack-status -l
+
+# restart all openstack services
+$ openstack-service restart
+```
 ---
 :white_medium_small_square: **ifcfg-br-ex**
 ```js
@@ -317,7 +327,15 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 </p>
 
 - ### Upload the ubuntu server Image on openstack dashboard
+
+
+<center>
+
 [:link: Download ubuntu bionic server image](https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img)
+
+**Project :arrow_right: Compute :arrow_right: Image  :arrow_right: Create image**
+**Image Name = ubuntu :arrow_right: File  :arrow_right: Format = QCOW2 - QEMU Emulator**
+</center>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="900"/>
@@ -385,12 +403,22 @@ $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/
 $ openstack vnf create --vnfd-name vnfd server
 ```
 
+<center>
+
+**Project :arrow_right: Compute :arrow_right: Instance** 
+<u>Need to wait a moment until the instance bootup</u>
+
+</center>
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="900"/>
 </p>
 
-- ### Mount the float IP
+- ### Associate the float IP
+<center>
 
+**Project :arrow_right: Compute :arrow_right: Instance :arrow_right: Associate float IP :arrow_right: IP Address :arrow_right: + :arrow_right: Allocate IP :arrow_right: Associate**
+
+</center>
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
 </p>
