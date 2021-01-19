@@ -331,7 +331,12 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 
 <center>
 
-[:link: Download ubuntu bionic server image](https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img)
+[:link: Download ubuntu bionic server image](https://cloud-images.ubuntu.com/bionic/current)
+
+```bash
+# Download ubuntu bionic server image
+$ wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img -P /home/user/Downloads/
+```
 
 **Project :arrow_right: Compute :arrow_right: Image  :arrow_right: Create image**
 **Image Name = ubuntu :arrow_right: File  :arrow_right: Format = QCOW2 - QEMU Emulator**
