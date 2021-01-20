@@ -26,12 +26,12 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 |Topo_style|Description|Sample|
 |---|----|--|
-|<center>minimal</center>|<center>Minimal topology with two hosts and one switch</center>|```sudo mn```|
-|<center>linear</center>|<center>Linear topology of k switches, with one host per switch.</center>|```sudo mn --topo linear,k```|
-|<center>reversed</center>|<center>Single switch connected to k hosts, with reversed ports.</center>|```sudo mn --topo reversed,k```|
-|<center>single</center>|<center>Single switch connected to k hosts.</center>|```sudo mn --topo single,k```|
-|<center>tree</center>|<center>Topology for a tree network with a given depth and fanout.</center>|```sudo mn --topo tree,n,k```|
-|<center>torus</center>|<center>2-D Torus topology</center>|```sudo mn --topo torus,n,k```| 
+|<center>minimal (default)</center>|<center>Minimal topology with two hosts and one switch</center>|`sudo mn`|
+|<center>linear</center>|<center>Linear topology of k switches, with one host per switch.</center>|`sudo mn --topo linear,k`|
+|<center>reversed</center>|<center>Single switch connected to k hosts, with reversed ports.</center>|`sudo mn --topo reversed,k`|
+|<center>single</center>|<center>Single switch connected to k hosts.</center>|`sudo mn --topo single,k`|
+|<center>tree</center>|<center>Topology for a tree network with a given depth and fanout.</center>|`sudo mn --topo tree,n,k`|
+|<center>torus</center>|<center>2-D Torus topology</center>|`sudo mn --topo torus,n,k`| 
 ---
 
 <center>
