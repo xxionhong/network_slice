@@ -29,12 +29,16 @@ $ xterm h1 h2 h3 h4
 $ iperf -s
 ```
 ### `In Xterm h1 h2 h3`
+
 ```bash
 # in h1 h2 h3
 $ iperf -c 10.0.0.4
 ```
+
  :pushpin: **To see the transmission bandwidth from h1, h2, h3 to h4 before we set the Qos parameter.**
+
 ### `In Terminal`
+
 ```bash
 # set Qos for Port s1-eth4 with 3 queues (q0 q1 q2),Qos Type is linux-htb
 $ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
@@ -64,10 +68,12 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-eth3", dl_src=00:00:00:00:00:03, dl_dst=00:00:00:00:00:04, actions=set_queue:2,output:"s1-eth4""
 ```
 ### `In Xterm h1 h2 h3`
+
 ```bash
 # in h1 h2 h3 to check the different
 $ iperf -c 10.0.0.4
 ```
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/2020-10-15%20215853.jpg?raw=true" width="700"/>
 </p>
@@ -75,6 +81,7 @@ $ iperf -c 10.0.0.4
  :pushpin: **The transmission bandwidth is restrict in the queue max rate.**
 
 ### `Optional, In Terminal`
+
 ```bash
 # kill all Qos and Queue
 $ sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue

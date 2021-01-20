@@ -3,29 +3,38 @@
 # Experiment 4
 
 ## :point_right: OpenStack Tacker installation
+
 </center>
 
 ---
+
 - ## Environment requirement
 *  CentOS-7 &nbsp;`2009`
 *  OpenStack `train`
 *  Tacker &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`stable/train`
 *  Oracle VirtualBox
 *  Wired Network (Do not use Wi-Fi)
+
 ---
+
 - ## VirtualBox Network Setting
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154259.jpg?raw=true" width="500"/>
 </p>
 
 ---
+
 - ## CentOS7 installation Network Setting
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20154043.jpg?raw=true" width="500"/>
 </p>
 
 ---
+
 - ## Disable firewall, SELINUX and update
+
 ```bash
 # login as root
 $ cd ~
@@ -45,7 +54,9 @@ $ systemctl restart network
 $ yum update -y
 $ reboot
 ```
+
 - ## Install Openstack-train
+
 ```bash
 $ yum install -y git 
 $ cd ~
@@ -84,12 +95,15 @@ $ vim answer.txt
 $ packstack --answer-file answer.txt
 # it may take half hour...
 ```
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-12%20162337.jpg?raw=true" width="700"/>
 </p>
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152401.jpg?raw=true" width="1000"/>
 </p>
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-15%20152435.jpg?raw=true" width="1000"/>
 </p>
@@ -104,8 +118,11 @@ $ openstack-status -l
 # restart all openstack services
 $ openstack-service restart
 ```
+
 ---
+
 :white_medium_small_square: **ifcfg-br-ex**
+
 ```js
 IPADDR={Host IP}
 GATEWAY={GW IP}
@@ -117,7 +134,9 @@ DEVICETYPE=ovs
 TYPE=OVSBridge
 BOOTPROTO=static
 ```
+
 :white_medium_small_square: **ifcfg-enp0s3**
+
 ```js
 DEVICE=enp0s3
 TYPE=OVSPort
@@ -125,7 +144,9 @@ DEVICETYPE=ovs
 OVS_BRIDGE=br-ex
 ONBOOT=yes
 ```
+
 - ## Modify the Linux network-script
+
 ```bash
 # backup ifcfg-enp0s3
 $ mv /etc/sysconfig/network-scripts/ifcfg-enp0s3 /etc/sysconfig/network-scripts/ifcfg-enp0s3.bak
@@ -150,6 +171,7 @@ $ systemctl restart network
 # show ovs-vsctl
 $ ovs-vsctl show
 ```
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20141330.jpg?raw=true" width="350"/>
 </p>
@@ -179,13 +201,17 @@ $ openstack endpoint create --region RegionOne nfv-orchestration public http://{
 $ openstack endpoint create --region RegionOne nfv-orchestration internal http://{ip}:9890/
 $ openstack endpoint create --region RegionOne nfv-orchestration admin http://{ip}:9890/
 ```
+
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20142353.jpg?raw=true" width="700"/>
 </p>
 
 ---
+
 - ## Install tacker
+
 :white_medium_small_square: **tacker.conf**
+
 ```js
 [default]
 auth_strategy = keystone
@@ -215,6 +241,7 @@ vim_drivers = openstack
 [tacker]
 monitor_driver = ping,http_ping
 ```
+
 ```bash
 # install tackerclient
 $ yum install python2-tackerclient -y
@@ -257,10 +284,13 @@ $ systemctl enable openstack-tacker-server openstack-tacker-conductor
 $ mkdir -p /etc/tacker/vim/fernet_keys
 $ chown tacker:tacker /etc/tacker/* -R
 ```
+
 ---
+
 - ## Tacker Configuration 
 
 :white_medium_small_square: **config.yaml**
+
 ```js
 auth_url: 'http://{IP}:5000/v3'
 username: 'admin'
@@ -270,6 +300,7 @@ project_domain_name: 'Default'
 user_domain_name: 'Default'
 cert_verify: 'True'
 ```
+
 ```bash
 # replace config.yaml
 $ cd ~
@@ -284,8 +315,11 @@ $ vim /etc/tacker/config.yaml
 # create vim in openstack
 $ openstack vim register --config-file /etc/tacker/config.yaml --description 'my first vim' --is-default Hello-VIM
 ```
+
 ---
+
 - ### Use Tacker to create VNF
+
 ```bash
 
 $ source keystonerc_admin
@@ -401,6 +435,7 @@ topology_template:
 
 ```
 - [:link: VNF Manager User Guide](https://docs.openstack.org/tacker/latest/user/vnfm_usage_guide.html)
+
 ```bash
 # Create Vnfd
 $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/Vnfd.yaml vnfd

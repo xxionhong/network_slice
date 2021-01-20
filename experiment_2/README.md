@@ -7,6 +7,7 @@
 ## :point_right: Task 1 - Ryu Topology Viewer
 
 </center>
+
 ### `In Terminal`
 
 ```bash
@@ -68,6 +69,7 @@ class MyTopo(Topo):
 
 topos = {"mytopo":(lambda : MyTopo())}
 ```
+
 ### `In Terminal`
 
 ```bash
@@ -114,7 +116,9 @@ $ sudo mn --topo single,4 --mac --switch ovs,protocols=OpenFlow13 --controller r
 </p>
 
 ### `In Terminal`
+
 **Modify the flowentrys that make h1 and h4 can't ping each other**
+
 ```bash
 # show the s1 flowentry
 $ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
@@ -152,6 +156,7 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 </p>
 
 :white_medium_small_square: **task3_topo.py**
+
 ```python
 from mininet.topo import Topo
 from mininet.link import TCLink
@@ -182,6 +187,7 @@ class MyTopo(Topo):
 topos = {"mytopo":(lambda : MyTopo())}
 ```
 ### `In Terminal`
+
 ```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
@@ -199,6 +205,7 @@ $ sudo mn --custom network_slice/experiment_2/task3_topo.py --topo mytopo --mac 
 > `h4 -> x h2 x`
 
 :key: **Add the all flowentrys for s1, s2, s3, s4**
+
 ```bash
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=1,actions=output:2
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 in_port=2,actions=output:1
@@ -213,7 +220,9 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=2,actions=output:1
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=3,actions=output:4
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
 ```
+
 ---
+
 <center>
 
 ## :point_right: Task 4-1 - Meter Table
@@ -227,6 +236,7 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
 [:pushpin: :link: Notice the OVS version and Linux kernel version when using meter](https://docs.openvswitch.org/en/latest/faq/releases/?highlight=meter%20linux%20kernel)
 
 ### `In Terminal`
+
 ```bash
 # start the ryu-manager
 $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
@@ -237,9 +247,8 @@ $ ryu-manager --verbose ryu/ryu/app/simple_switch_13.py
 $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
 
-
-
 [:pushpin: :link: To use ovs-vswitchd in Userspace mode, set a switch with ```datapath_type=netdev``` in the configuration database (default ```datapath_type=system```) ](https://github.com/openvswitch/ovs/blob/master/Documentation/intro/install/userspace.rst)
+
 ```bash
 $ sudo ovs-vsctl set bridge s1 datapath_type=netdev 
 $ sudo ovs-vsctl set bridge s2 datapath_type=netdev 
@@ -253,8 +262,10 @@ $ xterm h1 h2 h3 h4
 ```
 
 ### `In Xterm h4`
+
 :pushpin: When ```datapath_type``` is set to ```netdev```, the datapath is converted from ```Kernel mode``` to ```Userspace mode```, datapath receives the packet arrives, the packet will be checked and the packet will be discarded if the check fails. 
 This is why in many cases, after ```datapath_type=netdev```, **the hosts can be ping through, but the ```iperf``` cannot be used to measure bandwidth**. Need to turn off ```tx-checksumming```.
+
 ```bash
 # turn off the tx-checksumming
 $ ethtool -K h4-eth0 tx off
@@ -365,6 +376,7 @@ class MyTopo(Topo):
         
 topos = {"mytopo":(lambda : MyTopo())}
 ```
+
 [:link: Mininet config function source code](https://github.com/mininet/mininet/blob/de28f67a97fc8915cc1586c984465d89a016d8eb/mininet/link.py#L314)
 
 ### `In Terminal`
@@ -377,6 +389,7 @@ $ ryu-manager --verbose ryu/ryu/app/ofctl_rest.py
 # start the mininet
 $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ```
+
 :key: **Add flowentrys to s1, s2, s3**
 
 ```bash
