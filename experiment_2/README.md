@@ -1,4 +1,4 @@
-<center>
+<p align="center">
 
 # Experiment 2 
 
@@ -6,7 +6,7 @@
 
 ## :point_right: Task 1 - Ryu Topology Viewer
 
-</center>
+</p>
 
 ### `In Terminal`
 
@@ -26,19 +26,19 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 
 |Topo_style|Description|Sample|
 |---|----|--|
-|<center>minimal (default)</center>|<center>Minimal topology with two hosts and one switch</center>|`sudo mn`|
-|<center>linear</center>|<center>Linear topology of k switches, with one host per switch.</center>|`sudo mn --topo linear,k`|
-|<center>reversed</center>|<center>Single switch connected to k hosts, with reversed ports.</center>|`sudo mn --topo reversed,k`|
-|<center>single</center>|<center>Single switch connected to k hosts.</center>|`sudo mn --topo single,k`|
-|<center>tree</center>|<center>Topology for a tree network with a given depth and fanout.</center>|`sudo mn --topo tree,n,k`|
-|<center>torus</center>|<center>2-D Torus topology</center>|`sudo mn --topo torus,n,k`| 
+|<p align="center">minimal (default)</p>|<p align="center">Minimal topology with two hosts and one switch</p>|`sudo mn`|
+|<p align="center">linear</p>|<p align="center">Linear topology of k switches, with one host per switch.</p>|`sudo mn --topo linear,k`|
+|<p align="center">reversed</p>|<p align="center">Single switch connected to k hosts, with reversed ports.</p>|`sudo mn --topo reversed,k`|
+|<p align="center">single</p>|<p align="center">Single switch connected to k hosts.</p>|`sudo mn --topo single,k`|
+|<p align="center">tree</p>|<p align="center">Topology for a tree network with a given depth and fanout.</p>|`sudo mn --topo tree,n,k`|
+|<p align="center">torus</p>|<p align="center">2-D Torus topology</p>|`sudo mn --topo torus,n,k`| 
 ---
 
-<center>
+<p align="center">
 
 ## :point_right: Task 2 - With Custom Topology
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="500"/>
@@ -89,11 +89,11 @@ $ sudo mn --custom network_slice/experiment_2/task2_topo.py --topo mytopo --mac 
 
 ---
 
-<center>
+<p align="center">
 
 ## :point_right: Task 3-1 - Modify Flows
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-13%20task3-1.png?raw=true" width="500"/>
@@ -145,11 +145,11 @@ $ sudo ovs-ofctl -O OpenFlow13 mod-flows s1 "table=0, priority=1, in_port="s1-et
 </p>
 
 ---
-<center>
+<p align="center">
 
 ## :point_right: Task 3-2 - Add Flows by command with restrict
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task3.png?raw=true" width="600"/>
@@ -223,11 +223,11 @@ $ sudo ovs-ofctl -O OpenFlow13 add-flow s4 in_port=4,actions=output:3
 
 ---
 
-<center>
+<p align="center">
 
 ## :point_right: Task 4-1 - Meter Table
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="500"/>
@@ -339,11 +339,11 @@ $ sudo ovs-ofctl -O OpenFlow13 del-meter s1 meter=1
 
 ---
 
-<center>
+<p align="center">
 
 ## :point_right: Task 4-2 - Flowentry Design
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task4-2.png?raw=true" width="500"/>

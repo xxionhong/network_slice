@@ -1,14 +1,14 @@
-<center>
+<p align="center">
 
 # Experiment 1
-</center>
+</p>
 
 ---
-<center>
+<p align="center">
 
 ## :point_right: Task 1 - Learn to use ryu and mininet with restful api 
 
-</center>
+</p>
 
 ### `In Terminal`
 
@@ -101,11 +101,11 @@ $ pingall
 </p>
 
 ---
-<center>
+<p align="center">
 
 ## 	:point_right:Task 2 - Try to write a Ryu controller - FLOOD
 
-</center>
+</p>
 
 #### :pushpin: Use the FLOOD way to transmit packets in Ryu Controller. 
  **```FLOOD : every incoming packet is sent through every outgoing link except the one it arrived on```**
@@ -167,11 +167,11 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 </p>
 
 ---
-<center>
+<p align="center">
 
 ## 	:point_right:Task 3 - Try to write a Ryu controller - Add FLOOD flow
 
-</center>
+</p>
 
 #### :pushpin: Add a FLOOD flowentry to transmit packets. 
 

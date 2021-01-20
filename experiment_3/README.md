@@ -1,8 +1,8 @@
-<center>
+<p align="center">
 
 # Experiment 3 - QoS
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_2/img/2021-01-09%20task2.png?raw=true" width="500"/>

@@ -1,10 +1,10 @@
-<center>
+<p align="center">
 
 # Experiment 4
 
 ## :point_right: OpenStack Tacker installation
 
-</center>
+</p>
 
 ---
 
@@ -363,7 +363,7 @@ $ openstack keypair create --public-key ~/.ssh/id_rsa.pub Demo
 - ### Upload the ubuntu server Image on openstack dashboard
 
 
-<center>
+<p align="center">
 
 [:link: Download ubuntu bionic server image](https://cloud-images.ubuntu.com/bionic/current)
 
@@ -375,7 +375,7 @@ $ wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd
 **Project :arrow_right: Compute :arrow_right: Image  :arrow_right: Create image**
 **Image Name = ubuntu :arrow_right: File  :arrow_right: Format = QCOW2 - QEMU Emulator**
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143042.jpg?raw=true" width="900"/>
@@ -444,12 +444,12 @@ $ openstack vnf descriptor create --vnfd-file network_slice/experiment_4/script/
 $ openstack vnf create --vnfd-name vnfd server
 ```
 
-<center>
+<p align="center">
 
 **Project :arrow_right: Compute :arrow_right: Instance** 
 <u>Need to wait a moment until the instance bootup</u>
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143258.jpg?raw=true" width="900"/>
@@ -457,11 +457,11 @@ $ openstack vnf create --vnfd-name vnfd server
 
 - ### Associate the float IP
 
-<center>
+<p align="center">
 
 **Project :arrow_right: Compute :arrow_right: Instance :arrow_right: Associate float IP :arrow_right: IP Address :arrow_right: + :arrow_right: Allocate IP :arrow_right: Associate**
 
-</center>
+</p>
 
 <p align="center">
     <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_4/img/2020-10-16%20143502.jpg?raw=true" width="900"/>
