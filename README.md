@@ -8,7 +8,7 @@ This note is for the [page:link:](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A
 </p>
 
 ## :point_right: Environment requirement
-* #### ubuntu &nbsp;&nbsp; `18.04`
+* #### ubuntu &nbsp;&nbsp; `20.04`
 * #### mininet &nbsp; `2.3.0d6`
 * #### ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `v4.34 `
 
@@ -35,24 +35,26 @@ $ sudo apt-get install -y git
 $ sudo reboot
 ```
 
-- ### Install mininet
+- ### Install openvswitch
 
 ```bash
-# clone mininet
-$ cd ~
-$ git clone git://github.com/mininet/mininet
-
-# modify the mininet's install.sh script
-$ sed -i -e 's/for pkg in/$pkginst libopenvswitch_$OVS_RELEASE*.deb\n    for pkg in/g' ~/mininet/util/install.sh
-
-# install mininet and openvswitch 2.10.5
-$ sudo ./mininet/util/install.sh -n3V 2.10.5
+$ sudo apt install openvswitch-switch
 ```
 
 - ### Check the openvswitch version
 
 ```bash
 $ sudo ovs-vsctl -V
+```
+
+- ### Install mininet
+
+```bash
+# clone mininet
+$ cd ~
+$ git clone git://github.com/mininet/mininet
+# install mininet and set as openflow1.3
+$ sudo ./mininet/util/install.sh -n3
 ```
 
 - ### Check the mininet
@@ -67,7 +69,7 @@ $ exit
 - ### Ryu Pre-install
 
 ```bash
-$ sudo apt-get install -y libxml2-dev libxslt1-dev libffi-dev libssl-dev zlib1g-dev python3-pip python-eventlet python-routes python-webob python-paramiko gcc python-dev 
+$ sudo apt-get install -y libxml2-dev libxslt1-dev libffi-dev libssl-dev zlib1g-dev python3-pip python3-eventlet python3-routes python3-webob python3-paramiko gcc python3-dev 
 $ sudo pip3 install msgpack-python eventlet==0.15.2
 $ sudo pip3 install six --upgrade
 $ sudo pip3 install oslo.config q --upgrade
@@ -116,6 +118,8 @@ $ sudo apt-get remove openvswitch-common openvswitch-switch openvswitch-pki open
 
 # if ovs doesn't work, you can try this to start ovs
 $ sudo /usr/share/openvswitch/scripts/ovs-ctl start
+#or
+$ sudo service openvswitch-switch restart
 ```
 
 ---
