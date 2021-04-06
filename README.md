@@ -21,7 +21,7 @@ This note is for the [:link:page](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A
 
 ---
 
-## Installation Guile
+## Installation Guide
 - ### Initialize ubuntu 
 
 ```bash
