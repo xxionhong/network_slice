@@ -2,15 +2,15 @@
 
 # 下世代Network Slicing模組設計課程
 
-This note is for the [page:link:](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A0%82%E6%95%99%E6%9D%90%E6%8A%95%E5%BD%B1%E7%89%87/)
+This note is for the [:link:page](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A0%82%E6%95%99%E6%9D%90%E6%8A%95%E5%BD%B1%E7%89%87/)
 ***
 
 </p>
 
 ## :point_right: Environment requirement
-* #### ubuntu &nbsp;&nbsp; `20.04`
-* #### mininet &nbsp; `2.3.0d6`
-* #### ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `v4.34 `
+* ####  ubuntu &nbsp;&nbsp; [`20.04`](http://ftp.ubuntu-tw.org/ubuntu-releases/20.04.2.0/)
+* ####  mininet &nbsp; [`2.3.0`](https://github.com/mininet/mininet)
+* ####  ryu &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [`v4.34 `](https://github.com/faucetsdn/ryu)
 
 ---
 
@@ -27,9 +27,6 @@ This note is for the [page:link:](http://140.117.164.12/mbat_cctu/%E8%AA%B2%E5%A
 ```bash
 $ sudo apt-get update
 $ sudo apt-get upgrade
-
-# install git
-$ sudo apt-get install -y git
 
 # reboot
 $ sudo reboot
@@ -50,10 +47,14 @@ $ sudo ovs-vsctl -V
 - ### Install mininet
 
 ```bash
+# install git
+$ sudo apt-get install -y git
+
 # clone mininet
 $ cd ~
-$ git clone git://github.com/mininet/mininet
-# install mininet and set as openflow1.3
+$ git clone https://github.com/mininet/mininet
+
+# install mininet and set as OpenFlow1.3
 $ sudo ./mininet/util/install.sh -n3
 ```
 
@@ -79,7 +80,7 @@ $ sudo pip3 install oslo.config q --upgrade
 
 ```bash
 $ cd ~
-$ git clone https://github.com/faucetsdn/ryu.git
+$ git clone https://github.com/faucetsdn/ryu
 $ cd ryu
 $ sudo pip3 install .
 $ cd ~
@@ -89,7 +90,7 @@ $ cd ~
 
 ```bash
 $ cd Downloads/
-$ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 $ sudo dpkg -i google-chrome-stable_current_amd64.deb
 $ sudo apt-get install -f
 $ cd ~

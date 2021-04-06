@@ -6,7 +6,7 @@
 ---
 <p align="center">
 
-## :point_right: Task 1 - Learn to use ryu and mininet with restful api 
+## :point_right: Task 1 - Using ryu and mininet with restful api 
 
 </p>
 
@@ -103,7 +103,7 @@ $ pingall
 ---
 <p align="center">
 
-## 	:point_right:Task 2 - Try to write a Ryu controller - FLOOD
+## 	:point_right:Task 2 - Write a Ryu controller - FLOOD
 
 </p>
 
@@ -169,7 +169,7 @@ $ sudo mn --mac --switch ovs,protocols=OpenFlow13 --controller remote
 ---
 <p align="center">
 
-## 	:point_right:Task 3 - Try to write a Ryu controller - Add FLOOD flow
+## 	:point_right:Task 3 - Write a Ryu controller - Add FLOOD flow
 
 </p>
 
