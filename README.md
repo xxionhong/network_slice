@@ -108,7 +108,7 @@ $ cd ~
 
 ```bash
 $ cd ~
-$ git clone https://github.com/xxionhong/network_slice.git
+$ git clone https://github.com/THU-DBLAB/network_slice
 ```
 
 - ### Optional
