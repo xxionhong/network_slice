@@ -10,6 +10,10 @@
 
 </p>
 
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/THU-DBLAB/network_slice/blob/main/experiment_1/img/2021-04-13-add.png?raw=true" width="400"/>
+</p>
+
 ### `In Terminal`
 
 ```bash
