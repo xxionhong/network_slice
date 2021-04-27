@@ -394,7 +394,7 @@ $ sudo mn --custom network_slice/experiment_2/task4_topo.py --topo mytopo --mac 
 
 ```bash
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 table=0,in_port=1,actions=output:3
-# in s1, from port1(h1) to port3(s2)
+# in s1, from port1(h1) to port3(s3)
 
 $ sudo ovs-ofctl -O OpenFlow13 add-flow s1 table=0,in_port=3,actions=output:1
 # in s1, from port3(s2)  to port1(h1)
