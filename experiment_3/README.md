@@ -122,3 +122,28 @@ $ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
 - **[基於Open vSwitch的傳統限速和SDN限速:link:](https://www.sdnlab.com/23289.html)**
 - **[Open vSwitch之QoS的實現 :link:](https://www.sdnlab.com/19208.html)**
 - **[OVS QoS流量控制 (DPDK):link:](https://blog.csdn.net/sinat_20184565/article/details/93376574)**
+
+---
+
+<p align="center">
+
+# Homework
+
+</p>
+
+### 1. Topology
+
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/img-HW.jpg?raw=true" width="700"/>
+</p>
+透過 Mininet 自訂出如上圖的拓譜。
+
+### 2. Add Flow
+
+透過 ```sudo ovs-vsctl -O OpenFlow13 add-flow {Switch} {Contents}``` 來增加每個 Switch 中的 Flowentries，使得 **4 個 Host** 能夠互相連接。
+
+### 3. Meter Table
+設定 **任意 Switch** 中的 **Meter Table** 使得 **H1 (client)** 與 **H4 (server)** 之間的 bandwidth 限制為 **20 Mbps**。
+
+### 4. QoS
+設定 **S3** 的 **QoS**，使得 **H1 (server)** 對於 **H2 與 H3 (clients)** 的bandwidth 限制為 **10 Mbps** 與 **15 Mbps**。
