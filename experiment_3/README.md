@@ -140,7 +140,7 @@ $ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
 
 ### 2. Add Flow
 
-透過 ```sudo ovs-vsctl -O OpenFlow13 add-flow {Switch} {Contents}``` 來增加每個 Switch 中的 Flowentries，使得 **4 個 Host** 能夠互相連接。
+透過 ```sudo ovs-ofctl -O OpenFlow13 add-flow {Switch} {Contents}``` 來增加每個 Switch 中的 Flowentries，使得 **4 個 Host** 能夠互相連接。
 
 ### 3. Meter Table
 設定 **任意 Switch** 中的 **Meter Table** 使得 **H1 (client)** 與 **H4 (server)** 之間的 bandwidth 限制為 **20 Mbps**。
