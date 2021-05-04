@@ -134,7 +134,7 @@ $ sudo ovs-vsctl -- set Port s1-eth4 qos=@newqos -- \
 ### 1. Topology
 
 <p align="center">
-    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/xxionhong/network_slice/blob/main/experiment_3/img/img-HW.jpg?raw=true" width="700"/>
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://github.com/THU-DBLAB/network_slice/blob/main/experiment_3/img/img-HW.jpg?raw=true" width="700"/>
 </p>
 透過 Mininet 自訂出如上圖的拓譜。
 
