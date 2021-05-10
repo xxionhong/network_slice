@@ -1,6 +1,11 @@
-![](https://img-blog.csdnimg.cn/img_convert/1725e103892524230c3b09c9b060476c.png)
 
-![](https://i.imgur.com/dEX1ZFG.jpg)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://img-blog.csdnimg.cn/img_convert/1725e103892524230c3b09c9b060476c.png" width="500"/>
+</p>
+
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/dEX1ZFG.jpg" />
+</p>
 
 * Nova：透過配置及管理使用任何 Hypervisor 的虛擬機器，提供所需運算資源。
 * Swift：提供了彈性的、高可用的分散式對象存儲服務，適合存儲大規模非結構化數據。
@@ -61,18 +66,25 @@ $ ./stack.sh
 ```
 ---
 - ### **Install Finish**
-![](https://i.imgur.com/5eQusBh.png)
+
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/5eQusBh.png" width="500"/>
+</p>
 
 ---
 
-![](https://i.imgur.com/E3W8Ilu.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/E3W8Ilu.png" width="800"/>
+</p>
 
 ---
 - ## Add Router and interface for subnet
 
 **Project -> Network -> Network Topology -> Create Router** 
 
-![](https://i.imgur.com/ERdP7mx.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/ERdP7mx.png" width="500"/>
+</p>
 
 ---
 
@@ -80,7 +92,9 @@ $ ./stack.sh
 
 **Project -> Network -> Security Groups -> Manage Rules** 
 
-![](https://i.imgur.com/WqgThqb.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/WqgThqb.png" width="800"/>
+</p>
 
 ---
 
@@ -88,7 +102,9 @@ $ ./stack.sh
 
 **Project -> Compute -> Key pairs -> Create Key Pair** 
 
-![](https://i.imgur.com/gTicVf3.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/gTicVf3.png" width="800"/>
+</p>
 
 Save the ```name.pem``` file
 
@@ -101,7 +117,10 @@ Save the ```name.pem``` file
 # Download ubuntu bionic server image
 $ wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img
 ```
-![](https://i.imgur.com/dzEUiJw.png)
+
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/dzEUiJw.png" width="800"/>
+</p>
 
 ---
 
@@ -126,7 +145,9 @@ $ wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd
 
 **Launch Instance and Waitting setup until ...**
 
-![](https://i.imgur.com/qgMIhDA.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/qgMIhDA.png" width="800"/>
+</p>
 
 ---
 
@@ -134,7 +155,9 @@ $ wget https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd
 
 **Project -> Compute -> Instances -> Launch Instance** 
 
-![](https://i.imgur.com/W8cExb2.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/W8cExb2.png" width="800"/>
+</p>
 
 ---
 
@@ -146,7 +169,9 @@ $ ssh -i /path/my-key-pair.pem ubuntu@IP-address
 $ sudo vim /etc/resolv.conf
 ```
 
-![](https://i.imgur.com/SXqiRR1.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/SXqiRR1.png" width="600"/>
+</p>
 
 
 ```bash=
@@ -154,7 +179,9 @@ $ sduo apt update
 $ sudo apt install iperf3 -y
 ```
 
-![](https://i.imgur.com/XVs5V8t.png)
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/XVs5V8t.png" width="600"/>
+</p>
 
 ---
 
@@ -178,4 +205,8 @@ $ sudo vim /var/www/html/index.html
     </body>
 </html>
 ```
-![](https://i.imgur.com/vh7RXsp.png)
+
+<p align="center">
+    <img style="border-style:1px;border-style:double;border-color:#8C8C8C" src="https://imgur.com/vh7RXsp.png" width="800"/>
+</p>
+
